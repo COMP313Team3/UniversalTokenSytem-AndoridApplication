@@ -20,7 +20,21 @@ namespace CCTokenSystem.Controllers
         {
             return dbcontext.Students.AsEnumerable<Student>();
         }
+        public HttpResponseMessage GetbyStudentID([FromUri]int StudentID)
+        {
+            var student = dbcontext.Students.Where(sid=>sid.StudentID==StudentID);
+            if (student == null)
+            {
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+            }
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, student);
 
+            response.StatusCode = HttpStatusCode.Created;
+
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            return response;
+        }
         [HttpGet]
         public Student GetStudentByID(int Id)
         {
