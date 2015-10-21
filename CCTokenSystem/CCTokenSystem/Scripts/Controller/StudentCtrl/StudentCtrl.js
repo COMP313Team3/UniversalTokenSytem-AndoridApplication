@@ -1,7 +1,8 @@
 ﻿var app = angular.module("myWebAPI", [])
-app.controller("StudentCtrl", function ($scope, $http) {
 
-    //Get all student details
+app.controller("StudentCtrl", function ($scope, $http) {
+    //Get all stundet details
+
     $scope.renderStudentModels = function (response) {
         $scope.addSt = true;
         $scope.updateSt = false;
@@ -9,7 +10,7 @@ app.controller("StudentCtrl", function ($scope, $http) {
     };
 
     $scope.StudentInfo = function () {
-        $http.get("/api/Students/")
+        $http.get("/api/Students")
             .success($scope.renderStudentModels);
     }
 
@@ -18,28 +19,21 @@ app.controller("StudentCtrl", function ($scope, $http) {
 
     //Add student record into database
     $scope.Create = function (student) {
-       // console.log(student);
-        $http.post("/api/students", student)
+        $http.post("/api/Students", student)
             .success(function (response) {
-                console.log(data);
-                $scope.student.push(data);
-                //console.log(student);
                 $scope.StudentInfo();
-
-            }).error(function (data) {
-                $scope.error = "An error has occured while adding! " + data;
-            });
+            })
     };
 
-    $scope.Remove = function (StudentID) {
-        $http.delete("/api/Students/" + StudentID)
+    $scope.Remove = function (Id) {
+        $http.delete("/api/Students/" + Id)
             .success(function (response) {
                 $scope.StudentInfo();
             });
     };
 
-    $scope.Select = function (StudentID) {
-        $http.get("/api/Students/" + StudentID)
+    $scope.Select = function (Id) {
+        $http.get("/api/Students/" + Id)
             .success(function (response) {
                 $scope.addSt = false;
                 $scope.updateSt = true;
@@ -63,16 +57,5 @@ app.controller("StudentCtrl", function ($scope, $http) {
         $scope.clearSt = false;
         $scope.student = null;
     };
-
-    //Clear inputs
-    function ClearFields() {
-        $scope.student.StudentID = "";
-        $scope.student.FirstName = "";
-        $scope.student.LastName = "";
-        $scope.student.PhoneNo = "";
-        $scope.student.Course = "";
-        $scope.student.Email = "";
-
-    }
-})
+});
 
