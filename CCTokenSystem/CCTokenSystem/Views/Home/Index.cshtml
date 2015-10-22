@@ -1,24 +1,118 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-    </div>
+﻿<script src="~/Scripts/Controller/StudentCtrl/StudentCtrl.js"></script>
+<div ng-controller="StudentCtrl">
+    <form class="form-horizontal" name="myForm" novalidate>
+        <h3>Add Student</h3>
+        <div class="form-group">
+            <label for="studentid" class="col-sm-5 control-label">Student ID:</label>
+            <div class="col-sm-7">
+                <input type="text" name="studentid" class="form-control" ng-model="student.StudentID" placeholder="Student ID" ng-minlength="9" ng-maxlength="9" ng-pattern="/^[0-9]+$/" required>
+                <span style="color:red" ng-show="myForm.studentid.$dirty && myForm.studentid.$invalid">
+                    <span ng-show="myForm.studentid.$error.required">Student ID is required</span>
+                    <span ng-show="myForm.studentid.$error.minlength || myForm.studentid.$error.maxlength || myForm.studentid.$error.pattern">Invalid Student Id (Only numbers)</span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstname" class="col-sm-5 control-label">First Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="fname" class="form-control" ng-model="student.Firstname" placeholder="First Name" ng-pattern="/^[a-zA-Z]*$/" required>
+                <span style="color:red" ng-show="myForm.fname.$dirty && myForm.fname.$invalid">
+                    <span ng-show="myForm.fname.$error.required">First name is required</span>
+                    <span ng-show="myForm.fname.$error.pattern">Invalid First Name</span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-5 control-label">Last Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="lname" class="form-control" ng-model="student.Lastname" placeholder="Last Name" ng-pattern="/^[a-zA-Z]*$/" required>
+                <span style="color:red" ng-show="myForm.lname.$dirty && myForm.lname.$invalid">
+                    <span ng-show="myForm.lname.$error.required">Last name is required</span>
+                    <span ng-show="myForm.lname.$error.pattern">Invalid Last Name</span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phonenumber" class="col-sm-5 control-label">Phone Number:</label>
+            <div class="col-sm-7">
+                <input type="text" name="pnumber" class="form-control" ng-model="student.Phoneno" placeholder="Phone Number" ng-minlength="10" ng-maxlength="10" ng-pattern="/^[(]{0,1}[0-9]{3}[)]{0,1}[-s.]{0,1}[0-9]{3}[-s.]{0,1}[0-9]{4}$/" required>
+                <span style="color:red" ng-show="myForm.pnumber.$dirty && myForm.pnumber.$invalid">
+                    <span ng-show="myForm.pnumber.$error.required">Phone Number is required</span>
+                    <span ng-show="myForm.pnumber.$error.pattern || myForm.pnumber.$error.minlength || myForm.pnumber.$error.maxlength">Invalid Phone Number</span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="course" class="col-sm-5 control-label">Course Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="course" class="form-control" ng-model="student.Course" placeholder="Course" ng-pattern="/^[a-zA-Z]*$/" required>
+                <span style="color:red" ng-show="myForm.course.$dirty && myForm.course.$invalid">
+                    <span ng-show="myForm.course.$error.required">Course name is required</span>
+                    <span ng-show="myForm.course.$error.pattern">Invalid Course Name</span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-5 control-label">Email:</label>
+            <div class="col-sm-7">
+                <input type="email" class="form-control" name="input" ng-model="student.Email" placeholder="Email" required>
+                <span style="color:red" ng-show="myForm.input.$dirty && myForm.input.$invalid">
+                    <span ng-show="myForm.input.$error.required">Email is required</span>
+                    <span ng-show="myForm.input.$error.email">Invalid Email</span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-7">
+                <input type="submit" ng-show="addSt" ng-click="Create(student)" ng-disabled="myForm.studentid.$dirty && myForm.studentid.$invalid || myForm.fname.$dirty && myForm.fname.$invalid ||
+                       myForm.lname.$dirty && myForm.lname.$invalid ||
+                       myForm.pnumber.$dirty && myForm.pnumber.$invalid || myForm.course.$dirty && myForm.course.$invalid ||
+                       myForm.email.$dirty && myForm.email.$invalid" class="btn btn-success" value="Submit" />
+                <input type="submit" ng-show="updateSt" ng-click="Update(student)" class="btn btn-warning" value="Update" />
+                <input type="submit" ng-show="clearSt" ng-click="Clear()" class="btn btn-default" value="Create New" />
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <h3>Student Details</h3>
+            <table class="table table-striped">
+                <tr>
+                    <th>S.No</th>
+                    <th>Student ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th>Course Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                <tr ng-repeat="studentinfo in StData">
+                    <td>
+                        {{studentinfo.Id}}
+                    </td>
+                    <td>
+                        {{studentinfo.StudentID}}
+                    </td>
+                    <td>
+                        {{studentinfo.Firstname}}
+                    </td>
+                    <td>
+                        {{studentinfo.Lastname}}
+                    </td>
+                    <td>
+                        {{studentinfo.Phoneno}}
+                    </td>
+                    <td>
+                        {{studentinfo.Course}}
+                    </td>
+                    <td>
+                        {{studentinfo.Email}}
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" ng-click="Select(studentinfo.Id)"><span class="glyphicon glyphicon-pencil"></span></button>
+                        <button class="btn btn-danger" ng-click="Remove(studentinfo.Id)"><span class="glyphicon glyphicon-remove"></span></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
 </div>

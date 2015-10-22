@@ -15,7 +15,7 @@ namespace CCTokenSystem.Models
         {
             var student = new List<Student>{
                 new Student{
-                    StudentID="300718283",
+                    StudentID=300718283,
                     Firstname="Sri",
                     Lastname="Chatala",
                     Phoneno="6477866026",
@@ -23,7 +23,7 @@ namespace CCTokenSystem.Models
                     Email="schatala@my.centennialcollege.ca"
                 },
                 new Student{
-                    StudentID="300718284",
+                    StudentID=300718284,
                     Firstname="Alagu",
                     Lastname="Murugappan",
                     Phoneno="6477866325",
@@ -31,7 +31,7 @@ namespace CCTokenSystem.Models
                     Email="malagu@my.centennialcollege.ca"
                 },
                   new Student{
-                    StudentID="300718285",
+                    StudentID=300718285,
                     Firstname="Vangli",
                     Lastname="Rajan",
                     Phoneno="6477866363",
