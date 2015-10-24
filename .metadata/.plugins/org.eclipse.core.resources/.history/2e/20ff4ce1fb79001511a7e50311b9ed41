@@ -13,10 +13,5 @@
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textStyle="italic" />
- 
-    <ListView
-    	 android:id="@+id/CampusList"
-    	 android:layout_height="wrap_content"
-    	android:layout_width="match_parent">
-   </ListView>
+    
 </LinearLayout>
