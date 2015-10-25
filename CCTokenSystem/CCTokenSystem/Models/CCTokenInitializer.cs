@@ -49,7 +49,7 @@ namespace CCTokenSystem.Models
             {
                 new Campus
                 {
-                    CamspusId=1,
+                    CampusId=1,
                     CampusName="Progress Campus",
                     CampusAddress="941 Progress Avenue",
                     City="Toronto",
@@ -59,7 +59,7 @@ namespace CCTokenSystem.Models
                 },
                 new Campus
                 {
-                    CamspusId=2,
+                    CampusId=2,
                     CampusName=" Morningside Campus",
                     CampusAddress="940 Progress Avenue",
                     City="Toronto",
