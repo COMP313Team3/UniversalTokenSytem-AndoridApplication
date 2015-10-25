@@ -76,3 +76,6 @@ D:\PROJECT2\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\b
 D:\PROJECT2\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.csprojResolveAssemblyReference.cache
 D:\PROJECT2\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.dll
 D:\PROJECT2\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.pdb
+D:\kaykay\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.csprojResolveAssemblyReference.cache
+D:\kaykay\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.dll
+D:\kaykay\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.pdb

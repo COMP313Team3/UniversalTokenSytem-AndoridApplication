@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using CCTokenSystem.Models;
 using System.Net.Http.Headers;
+using System.Data.Entity;
 
 namespace CCTokenSystem.Controllers
 {

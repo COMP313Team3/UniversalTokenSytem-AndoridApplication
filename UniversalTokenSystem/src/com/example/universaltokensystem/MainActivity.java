@@ -5,22 +5,28 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,111 +39,81 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); 
-        Button next = (Button) findViewById(R.id.button1);
-        stuid = (EditText) findViewById(R.id.editText1);
-
-        
-        next.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-            	v=view;
-            	 new HttpAsyncTask().execute("http://cctoken.azurewebsites.net/api/students/");
-                /*Intent myIntent = new Intent(view.getContext(), CampusInfo.class);
-                startActivityForResult(myIntent, 0);*/
-            }
-
-        });
+        Button submit = (Button)findViewById(R.id.btnLogin);
+        submit.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				EditText StudentID = (EditText)findViewById(R.id.txtStudentID);
+				String SId = StudentID.getText().toString().trim();	
+				if(TextUtils.isEmpty(SId)){
+					Toast.makeText(MainActivity.this,"Please enter a valid StudentID", Toast.LENGTH_SHORT).show();
+				}else{
+					new RestOperations().execute();
+				}
+			}
+		});
     }
     
-    public static String GET(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
- 
-            // create HttpClient
-            HttpClient httpclient = new DefaultHttpClient();
- 
-            // make GET request to the given URL
-            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
- 
-            // receive response as inputStream
-            inputStream = httpResponse.getEntity().getContent();
- 
-            // convert input stream to string
-            if(inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "Did not work!";
- 
-        } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
-        }
- 
-        return result;
-    }
- 
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException{
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
- 
-        inputStream.close();
-        return result;
- 
-    }
- 
-    public boolean isConnected(){
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isConnected()) 
-                return true;
-            else
-                return false;   
-    }
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
- 
-            return GET(urls[0]);
-        }
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-            //Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
-           // etResponse.setText(result);
-           // JSONObject json;
-            JSONArray array=null;
-            int flag=0;
-            String student_id=stuid.getText().toString();
-            try {
-				//json = new JSONObject(result);
-			    array = new JSONArray(result);			           
-                for (int i = 0; i < array.length(); i++) {
-                JSONObject row = array.getJSONObject(i);
-                String stu_id=row.getString("StudentID");
-                if( student_id.equals(stu_id)){
-                	
-                	flag=1;
-                	break;
-                }               
-            }
-            
-            if(flag==1)
-            {
-            	Intent myIntent = new Intent(v.getContext(), CampusInfo.class);
-                startActivityForResult(myIntent, 0);
-            }
-            else{
-            	 Toast.makeText(getBaseContext(), "Invalid Student ID", Toast.LENGTH_LONG).show();
-            }
-            
-            } catch (JSONException e) {
-				// TODO Auto-generated catch block
-            	Toast.makeText(getBaseContext(), "error", Toast.LENGTH_LONG).show();
-				e.printStackTrace();
-			}           
-       }
-    }
+    public class RestOperations extends AsyncTask<Void, Void, String> {
+    	protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
+ 	       InputStream in = entity.getContent();
+ 	         StringBuffer out = new StringBuffer();
+ 	         int n = 1;
+ 	         while (n>0) {
+ 	             byte[] b = new byte[4096];
+ 	             n =  in.read(b);
+ 	             if (n>0) out.append(new String(b, 0, n));
+ 	         }
+ 	         return out.toString();
+ 	    }
+    	final HttpClient httpClient = new DefaultHttpClient();
+    	/*String content;
+    	String error;*/
+    	ProgressDialog progressDailog = new ProgressDialog(MainActivity.this);
+    	//String Data;
+    	@Override
+    	protected void onPreExecute() {
+    		// TODO Auto-generated method stub
+    		super.onPreExecute();
+    		
+    		progressDailog.setTitle("Please wait...");
+    		progressDailog.show();
+    	}
+    	
+    	@Override
+    	protected String doInBackground(Void... params) {
+    		// TODO Auto-generated method stub
+    		HttpClient httpClient = new DefaultHttpClient();
+			HttpContext localContext = new BasicHttpContext();
+			EditText StudentID = (EditText)findViewById(R.id.txtStudentID);
+			String SId = StudentID.getText().toString().trim();	
+			String data = null;
+			String restStudentURL = "http://cctoken.azurewebsites.net/api/students/?StudentID="+SId;
+	        HttpGet httpGet = new HttpGet(restStudentURL);
+	        try {
+	               HttpResponse response = httpClient.execute(httpGet, localContext);
+	               HttpEntity entity = response.getEntity();
+	               data = getASCIIContentFromEntity(entity);
+	        } catch (Exception e) {
+	          	 return e.getLocalizedMessage();
+	        }
+	        return data;
+    	}
+
+    	@Override
+    	protected void onPostExecute(String result) {
+    		// TODO Auto-generated method stub
+    		super.onPostExecute(result);
+    		if (result.equals("[]")) {
+    			Toast.makeText(MainActivity.this,"Invalid StudentID", Toast.LENGTH_SHORT).show();
+			}else{
+				Intent intent = new Intent(MainActivity.this,CampusInfo.class);
+				intent.putExtra("StudentInfo", result);
+				startActivity(intent);
+			}
+    		((EditText)findViewById(R.id.txtStudentID)).setText("");
+    		progressDailog.dismiss();
+    	}
+    }		
 
 }
