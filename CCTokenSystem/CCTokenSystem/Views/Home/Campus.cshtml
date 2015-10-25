@@ -34,7 +34,7 @@
         <div class="form-group">
             <label for="provience" class="col-sm-5 control-label">Provience:</label>
             <div class="col-sm-7">
-                <input type="text" name="provience" class="form-control" ng-pattern="/^[a-zA-Z ]*$/"  ng-model="campus.Province" placeholder="Provience" required>
+                <input type="text" name="provience" class="form-control" ng-pattern="/^[a-zA-Z ]*$/" ng-model="campus.Province" placeholder="Provience" required>
                 <span style="color:red" ng-show="myForm.provience.$dirty && myForm.provience.$invalid">
                     <span ng-show="myForm.provience.$error.required">Provience required</span>
                     <span ng-show="myForm.provience.$error.pattern">Invalid Provience Name</span>
@@ -64,20 +64,18 @@
         <div class="form-group">
             <div class="col-sm-offset-5 col-sm-7">
                 <input type="submit" ng-show="addSt" ng-click="Create(campus)" ng-disabled="
-                       myForm.campusname.$pristine || myForm.campusname.$dirty && myForm.campusname.$invalid || 
+                       myForm.campusname.$pristine || myForm.campusname.$dirty && myForm.campusname.$invalid ||
                        myForm.address.$pristine || myForm.address.$dirty && myForm.address.$invalid ||
                        myForm.city.$pristine || myForm.city.$dirty && myForm.city.$invalid ||
-                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid || 
-                       myForm.provience.$pristine || myForm.provience.$dirty && myForm.provience.$invalid ||
-                       myForm.input.$pristine || myForm.input.$dirty && myForm.input.$invalid" class="btn btn-success" value="Submit" />
+                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid ||
+                       myForm.provience.$pristine || myForm.provience.$dirty && myForm.provience.$invalid" class="btn btn-success" value="Submit" />
                 <input type="submit" ng-show="updateSt" ng-click="Update(campus)" ng-disabled="
-                       myForm.campusname.$pristine || myForm.campusname.$dirty && myForm.campusname.$invalid || 
-                       myForm.address.$pristine || myForm.address.$dirty && myForm.address.$invalid ||
-                       myForm.city.$pristine || myForm.city.$dirty && myForm.city.$invalid ||
-                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid || 
-                       myForm.provience.$pristine || myForm.provience.$dirty && myForm.provience.$invalid ||
-                       myForm.input.$pristine || myForm.input.$dirty && myForm.input.$invalid"
-                        class="btn btn-warning" value="Update" />
+                       myForm.campusname.$dirty && myForm.campusname.$invalid ||
+                       myForm.address.$dirty && myForm.address.$invalid ||
+                       myForm.city.$dirty && myForm.city.$invalid ||
+                       myForm.pnumber.$dirty && myForm.pnumber.$invalid ||
+                       myForm.provience.$dirty && myForm.provience.$invalid"
+                       class="btn btn-warning" value="Update" />
                 <input type="submit" ng-show="clearSt" ng-click="Clear()" class="btn btn-default" value="Create New" />
             </div>
         </div>
