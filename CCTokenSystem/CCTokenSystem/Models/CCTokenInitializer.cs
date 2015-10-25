@@ -44,6 +44,35 @@ namespace CCTokenSystem.Models
                 context.Students.Add(item);
             }
             context.SaveChanges();
+
+            var campus = new List<Campus>
+            {
+                new Campus
+                {
+                    CamspusId=1,
+                    CampusName="Progress Campus",
+                    CampusAddress="941 Progress Avenue",
+                    City="Toronto",
+                    Province="Ontario",
+                    PostalCode="M1B3X7",
+                    Phone="6474057686"
+                },
+                new Campus
+                {
+                    CamspusId=2,
+                    CampusName=" Morningside Campus",
+                    CampusAddress="940 Progress Avenue",
+                    City="Toronto",
+                    Province="Ontario",
+                    PostalCode="M1T7R3",
+                    Phone="4165674587"
+                }
+            };
+                foreach (var item in campus)
+                {
+                    context.Campuses.Add(item);
+                }
+            context.SaveChanges();
         }
     }
 }

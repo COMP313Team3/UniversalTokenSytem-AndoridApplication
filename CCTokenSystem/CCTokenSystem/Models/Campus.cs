@@ -9,13 +9,13 @@ namespace CCTokenSystem.Models
     public class Campus
     {
         [Key]
-        public int campus_Id { get; set; }
-        public string campus_name { get; set; }
-        public string address1 { get; set; }
-        public string city { get; set; }
-        public string province { get; set; }
-        public string postal_code { get; set; }
-        public int phone { get; set; }
+        public int CamspusId { get; set; }
+        public string CampusName { get; set; }
+        public string CampusAddress { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string PostalCode { get; set; }
+        public string Phone { get; set; }
 
         public virtual List<Department> campus_departments { get; set; }
     }
