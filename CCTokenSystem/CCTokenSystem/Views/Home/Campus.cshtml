@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="phonenumber" class="col-sm-5 control-label">Address:</label>
             <div class="col-sm-7">
-                <input type="text" name="address" class="form-control" ng-model="campus.Address" placeholder="Address" required>
+                <input type="text" name="address" class="form-control" ng-model="campus.CampusAddress" placeholder="Address" required>
                 <span style="color:red" ng-show="myForm.address.$dirty && myForm.address.$invalid">
                     <span ng-show="myForm.address.$error.required">Address required</span>
                 </span>
@@ -34,7 +34,7 @@
         <div class="form-group">
             <label for="provience" class="col-sm-5 control-label">Provience:</label>
             <div class="col-sm-7">
-                <input type="text" name="provience" class="form-control" ng-pattern="/^[a-zA-Z ]*$/"  ng-model="campus.Provience" placeholder="Provience" required>
+                <input type="text" name="provience" class="form-control" ng-pattern="/^[a-zA-Z ]*$/"  ng-model="campus.Province" placeholder="Provience" required>
                 <span style="color:red" ng-show="myForm.provience.$dirty && myForm.provience.$invalid">
                     <span ng-show="myForm.provience.$error.required">Provience required</span>
                     <span ng-show="myForm.provience.$error.pattern">Invalid Provience Name</span>
@@ -54,7 +54,7 @@
         <div class="form-group">
             <label for="phonenumber" class="col-sm-5 control-label">Contact Number:</label>
             <div class="col-sm-7">
-                <input type="text" name="pnumber" class="form-control" ng-pattern="/^[(]{0,1}[0-9]{3}[)]{0,1}[-s.]{0,1}[0-9]{3}[-s.]{0,1}[0-9]{4}$/" ng-model="campus.ContactNo" placeholder="Contact Number" ng-minlength="12" ng-maxlength="12" required>
+                <input type="text" name="pnumber" class="form-control" ng-pattern="/^[(]{0,1}[0-9]{3}[)]{0,1}[-s.]{0,1}[0-9]{3}[-s.]{0,1}[0-9]{4}$/" ng-model="campus.Phone" placeholder="Contact Number" ng-minlength="12" ng-maxlength="12" required>
                 <span style="color:red" ng-show="myForm.pnumber.$dirty && myForm.pnumber.$invalid">
                     <span ng-show="myForm.pnumber.$error.required">Phone Number is required</span>
                     <span ng-show="myForm.pnumber.$error.pattern || myForm.pnumber.$error.minlength || myForm.pnumber.$error.maxlength">Invalid Phone Number(xxx-xxx-)</span>
@@ -103,19 +103,19 @@
                         {{campus.CampusName}}
                     </td>
                     <td>
-                        {{campus.Address}}
+                        {{campus.CampusAddress}}
                     </td>
                     <td>
                         {{campus.City}}
                     </td>
                     <td>
-                        {{campus.Provience}}
+                        {{campus.Province}}
                     </td>
                     <td>
                         {{campus.PostalCode}}
                     </td>
                     <td>
-                        {{campus.ContactNo}}
+                        {{campus.Phone}}
                     </td>
                     <td>
                         <button class="btn btn-warning" ng-click="Select(campus.CampusId)"><span class="glyphicon glyphicon-pencil"></span></button>
