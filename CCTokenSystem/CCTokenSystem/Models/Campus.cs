@@ -15,6 +15,8 @@ namespace CCTokenSystem.Models
         public string City { get; set; }
         public string Province { get; set; }
         public string PostalCode { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
+
+        //public virtual List<Department> campus_departments { get; set; }
     }
 }

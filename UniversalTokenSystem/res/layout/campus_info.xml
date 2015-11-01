@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundcolor"
     android:orientation="vertical" >
-    
+
  <TextView
         android:id="@+id/StudentID"
         android:layout_width="wrap_content"
@@ -12,6 +12,21 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textStyle="italic" />
-    
+        android:textStyle="bold" />
+ <TextView
+        android:id="@+id/lblCampus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Select a Campus:"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp" />
+    <ListView
+    	 android:id="@+id/CampusList"
+    	 android:layout_height="wrap_content"
+    	android:layout_width="match_parent"
+    	android:layout_marginTop="35dp" >
+   </ListView>
+   
 </LinearLayout>
