@@ -16,7 +16,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -90,6 +89,7 @@ public class CampusInfo extends Activity {
             }
             return text;
     	}
+
     	@Override
     	protected void onPostExecute(String result) {
     		// TODO Auto-generated method stub
@@ -100,13 +100,12 @@ public class CampusInfo extends Activity {
 				JSONArray stList = new JSONArray(result);
 				for(int i=0; i < stList.length() ; i++) {
 				    JSONObject json_data = stList.getJSONObject(i);
-				    //int id=json_data.getInt("CampusId");
+				    /*int id=json_data.getInt("CampusId");
 				    String name=json_data.getString("CampusName");
-				   // String address = json_data.getString("CampusAddress");
-				    //String Campus =  name;
-				    items.add(name);
-				   // items.add(json_data.getString("CampusName"));
-				    //items.add(json_data.getString("CampusAddress"));
+				    String address = json_data.getString("Address");
+				    String Campus = name +  address;
+				    items.add(Campus);*/
+				    items.add(json_data.getString("CampusName"));
 				}
 				
 				ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(CampusInfo.this,android.R.layout.simple_list_item_1, android.R.id.text1, items);
@@ -115,10 +114,11 @@ public class CampusInfo extends Activity {
 
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
-						String name = listView.getItemAtPosition(arg2).toString();
-						Intent intentCampus = new Intent(CampusInfo.this,DepartmentInfo.class);
-						intentCampus.putExtra("CampusInfo", name);
-						startActivity(intentCampus);
+						//String name = listView.getItemAtPosition(arg2).toString();
+						//Toast.makeText(CampusInfo.this, name, Toast.LENGTH_LONG).show();
+						Intent intent = new Intent(CampusInfo.this,CampusInfo.class);
+						intent.putExtra("CampusInfo", items);
+						startActivity(intent);
 						
 					}
 				});

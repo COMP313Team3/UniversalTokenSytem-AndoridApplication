@@ -5,7 +5,7 @@
         <div class="form-group">
             <label for="firstname" class="col-sm-5 control-label">Campus Name:</label>
             <div class="col-sm-7">
-                <input type="text" name="campusname" class="form-control" ng-model="campus.CampusName" placeholder="First Name" ng-pattern="/^[a-zA-Z ]*$/" required>
+                <input type="text" name="campusname" class="form-control" ng-model="campus.CampusName" placeholder="Campus Name" ng-pattern="/^[a-zA-Z ]*$/" required>
                 <span style="color:red" ng-show="myForm.campusname.$dirty && myForm.campusname.$invalid">
                     <span ng-show="myForm.campusname.$error.required">Campus name is required</span>
                     <span ng-show="myForm.campusname.$error.pattern">Invalid Campus Name</span>
@@ -46,8 +46,8 @@
             <div class="col-sm-7">
                 <input type="text" name="postalcode" class="form-control" ng-model="campus.PostalCode" placeholder="Postal Code" required>
                 <span style="color:red" ng-show="myForm.postalcode.$dirty && myForm.postalcode.$invalid">
-                    <span ng-show="myForm.postalcode.$error.required">Provience required</span>
-                    <span ng-show="myForm.postalcode.$error.pattern">Invalid Provience Name</span>
+                    <span ng-show="myForm.postalcode.$error.required">PostalCode required</span>
+                    <span ng-show="myForm.postalcode.$error.pattern">Invalid PostalCode</span>
                 </span>
             </div>
         </div>
