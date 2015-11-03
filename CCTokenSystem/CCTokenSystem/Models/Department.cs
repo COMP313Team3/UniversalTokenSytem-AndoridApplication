@@ -12,6 +12,7 @@ namespace CCTokenSystem.Models
         [Key]
         public int dept_Id { get; set; }
         public string dept_name { get; set; }
+        public string room_no { get; set; }
         public int campus_Id { get; set; }
 
         public virtual Campus Campus { get; set; }
