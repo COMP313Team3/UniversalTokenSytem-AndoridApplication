@@ -73,6 +73,60 @@ namespace CCTokenSystem.Models
                     context.Campuses.Add(item);
                 }
             context.SaveChanges();
+
+
+            var Departments = new List<Department>
+            {
+                new Department
+                {
+                    dept_Id=1,
+                    dept_name ="ICET",
+                    room_no = "A12",
+                    campus_Id =1
+                 },
+                new Department
+                {
+                    dept_Id=2,
+                    dept_name ="ENGLISH",
+                    room_no = "E12",
+                    campus_Id =1
+                }
+            };
+            foreach (var dept in Departments)
+            {
+                context.Departments.Add(dept);
+            }
+            context.SaveChanges();
+
+
+
+            var Advisors = new List<Advisor>
+            {
+                new Advisor
+                {
+                    Advisor_Id=1,
+                    Firstname="Sara",
+                    Lastname="sashthri",
+                    Email="Sara@centennial.com",
+                    Phoneno="4165674587",
+                    dept_Id=1
+                },
+                new Advisor
+                {
+                    Advisor_Id=2,
+                    Firstname="Advisor1",
+                    Lastname="Advisor1",
+                    Email="Advisor1@centennial.com",
+                    Phoneno="4165674517",
+                    dept_Id=2
+                }
+            };
+            foreach (var advisor in Advisors)
+            {
+                context.Advisors.Add(advisor);
+            }
+            context.SaveChanges();
+
         }
     }
 }

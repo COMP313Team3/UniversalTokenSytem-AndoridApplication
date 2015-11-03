@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,23 +11,23 @@ using System.Web.Http;
 
 namespace CCTokenSystem.Controllers
 {
-    public class DepartementController : ApiController
+    public class DepartmentController : ApiController
     {
         CCTokenSystemContext dbcontext = new CCTokenSystemContext();
 
         [HttpGet]
-        public IEnumerable<Department> GetAllDepartment()
+        public IEnumerable<Department> GetAllStudents()
         {
             return dbcontext.Departments.AsEnumerable<Department>();
         }
-        public HttpResponseMessage GetbyDepartmentID([FromUri]int DepartmentID)
+        public HttpResponseMessage GetbyStudentID([FromUri]int StudentID)
         {
-            var department = dbcontext.Departments.Where(sid => sid.dept_Id == DepartmentID);
-            if (department == null)
+            var student = dbcontext.Departments.Where(sid=>sid.StudentID==StudentID);
+            if (student == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, department);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, student);
 
             response.StatusCode = HttpStatusCode.Created;
 
@@ -35,23 +36,23 @@ namespace CCTokenSystem.Controllers
             return response;
         }
         [HttpGet]
-        public Department GetStudentByID(int Id)
+        public Student GetStudentByID(int Id)
         {
-            Department department = dbcontext.Departments.Find(Id);
+            Student student = dbcontext.Departments.Find(Id);
 
-            if (department == null)
+            if (student == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
-            return department;
+            return student;
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateDepartment(Department department)
+        public HttpResponseMessage UpdateStudent(Student student)
         {
-            if (department != null)
+            if (student != null)
             {
-                dbcontext.Entry(department).State = EntityState.Modified;
+                dbcontext.Entry(student).State = EntityState.Modified;
             }
 
             try
@@ -64,7 +65,7 @@ namespace CCTokenSystem.Controllers
             }
 
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, department);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, student);
 
             response.StatusCode = HttpStatusCode.Created;
 
@@ -74,9 +75,9 @@ namespace CCTokenSystem.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage CreateDepartment(Department department)
+        public HttpResponseMessage CreateStudent(Student student)
         {
-            dbcontext.Departments.Add(department);
+            dbcontext.Students.Add(student);
             try
             {
                 dbcontext.SaveChanges();
@@ -86,7 +87,7 @@ namespace CCTokenSystem.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, department);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, student);
 
             response.StatusCode = HttpStatusCode.Created;
 
@@ -96,15 +97,15 @@ namespace CCTokenSystem.Controllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage DeleteDepartment(int Id)
+        public HttpResponseMessage DeleteStudent(int Id)
         {
-            Department department = dbcontext.Departments.Find(Id);
+            Student student = dbcontext.Students.Find(Id);
 
-            if (department == null)
+            if (student == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-            dbcontext.Departments.Remove(department);
+            dbcontext.Students.Remove(student);
 
             try
             {
