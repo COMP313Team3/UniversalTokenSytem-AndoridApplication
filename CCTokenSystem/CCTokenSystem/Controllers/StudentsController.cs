@@ -29,8 +29,6 @@ namespace CCTokenSystem.Controllers
             }
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, student);
 
-            response.StatusCode = HttpStatusCode.Created;
-
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             return response;
@@ -48,7 +46,7 @@ namespace CCTokenSystem.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateStudent(Student student)
+        public HttpResponseMessage UpdateStudent(int id,Student student)
         {
             if (student != null)
             {
