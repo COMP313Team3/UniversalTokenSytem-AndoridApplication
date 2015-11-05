@@ -1,4 +1,6 @@
-﻿<div ng-controller="AdvisorCtrl">
+﻿
+<script src="~/Scripts/Controller/AdvisorCtrl/AdvisorCtrl.js"></script>
+<div ng-controller="AdvisorCtrl">
     <form class="form-horizontal" name="myForm" novalidate>
         <h3>Add Advisor</h3>
         <div class="form-group">
@@ -30,7 +32,7 @@
                     <span ng-show="myForm.pnumber.$error.pattern || myForm.pnumber.$error.minlength || myForm.pnumber.$error.maxlength">Invalid Phone Number(xxx-xxx-xxxx)</span>
                 </span>
             </div>
-        </div>    
+        </div>
         <div class="form-group">
             <label for="email" class="col-sm-5 control-label">Email:</label>
             <div class="col-sm-7">
@@ -44,10 +46,10 @@
         <div class="form-group">
             <label for="dept_id" class="col-sm-5 control-label">Department:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" name="dept_id" ng-model="advisor.dept_id" placeholder="Department" required>
-                @*<select name="dept_id" class="form-control" ng-model="advisor.dept_id" placeholder="Department" required>
-                    <option value="option-1">Progress</option>
-                    <option value="option-2">Morningside</option>*@
+                <select name="dept_id" class="form-control" ng-model="advisor.dept_id" required 
+                        ng-options="dept.dept_Id as dept.dept_name for dept in DeptData">
+                    <option value="">Select Department Name</option>
+                </select>
                 <span style="color:red" ng-show="myForm.dept_id.$dirty && myForm.dept_id.$invalid">
                     <span ng-show="myForm.course.$error.required">Department name is required</span>
                 </span>

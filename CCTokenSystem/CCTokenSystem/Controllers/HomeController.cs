@@ -26,6 +26,12 @@ namespace CCTokenSystem.Controllers
 
             return View();
         }
+        public ActionResult Department()
+        {
+            ViewBag.Title = "Department Page";
+
+            return View();
+        }
         public ActionResult Advisor()
         {
             ViewBag.Title = "Advisor Page";
