@@ -16,7 +16,7 @@ namespace CCTokenSystem.Controllers
 
         [HttpGet]
         public IEnumerable<Department> GetAllDepartment()
-        {
+            {
             return dbcontext.Departments.AsEnumerable<Department>();
         }
         public HttpResponseMessage GetbyDepartmentID([FromUri]int DepartmentID)

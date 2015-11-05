@@ -258,7 +258,9 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="bin\CCTokenSystem.dll.config" />
     <None Include="Properties\PublishProfiles\cctoken.pubxml" />
+    <Content Include="Scripts\Controller\AdvisorCtrl\AdvisorCtrl.js" />
     <Content Include="Scripts\Controller\CampusCtrl\CampusCtrl.js" />
+    <Content Include="Scripts\Controller\DeptCtrl\DeptCtrl.js" />
     <Content Include="Scripts\Controller\StudentCtrl\StudentCtrl.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -287,6 +289,7 @@
     <Content Include="Views\Home\Campus.cshtml" />
     <Content Include="Views\Home\Student.cshtml" />
     <Content Include="Views\Home\Advisor.cshtml" />
+    <Content Include="Views\Home\Department.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

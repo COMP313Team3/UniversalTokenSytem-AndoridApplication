@@ -16,7 +16,7 @@ namespace CCTokenSystem.Models
         public int campus_Id { get; set; }
 
         public virtual Campus Campus { get; set; }
-        public virtual ICollection<Advisor> Advisors{ get; set;}
+        //public virtual ICollection<Advisor> Advisors{ get; set;}
 
     }
 }
