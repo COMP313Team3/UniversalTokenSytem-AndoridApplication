@@ -26,5 +26,11 @@ namespace CCTokenSystem.Controllers
 
             return View();
         }
+        public ActionResult Advisor()
+        {
+            ViewBag.Title = "Advisor Page";
+
+            return View();
+        }
     }
 }
