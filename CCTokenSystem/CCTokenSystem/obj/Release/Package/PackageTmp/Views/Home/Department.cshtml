@@ -54,6 +54,7 @@
                     <th>S.No</th>
                     <th>Department Name</th>
                     <th>Room Number</th>
+                    <th>Campus Name</th>
                     <th>Actions</th>
                 </tr>
                 <tr ng-repeat="dept in DeptData">
@@ -65,6 +66,9 @@
                     </td>
                     <td>
                         {{dept.room_no}}
+                    </td>
+                    <td>
+                        {{dept.Campus.CampusName}}
                     </td>
                     <td>
                         <button class="btn btn-warning" ng-click="Select(dept.dept_Id)"><span class="glyphicon glyphicon-pencil"></span></button>
