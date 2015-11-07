@@ -30,7 +30,7 @@ app.controller("DeptCtrl", function ($scope, $http) {
     //Add Department record into database
     $scope.Create = function (dept) {
         console.log(dept);
-        $http.post("/api/Department/", dept)
+        $http.post("/api/Department", dept)
             .success(function (response) {
                 $scope.DeptInfo();
             })
