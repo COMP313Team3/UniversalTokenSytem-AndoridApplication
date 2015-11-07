@@ -20,7 +20,7 @@ app.controller("DeptCtrl", function ($scope, $http) {
     };
 
     $scope.DeptInfo = function () {
-        $http.get("/api/Department")
+        $http.get("/api/Department/")
             .success($scope.renderDeptModels);
     }
 
@@ -30,7 +30,7 @@ app.controller("DeptCtrl", function ($scope, $http) {
     //Add Department record into database
     $scope.Create = function (dept) {
         console.log(dept);
-        $http.post("/api/Department", dept)
+        $http.post("/api/Department/", dept)
             .success(function (response) {
                 $scope.DeptInfo();
             })

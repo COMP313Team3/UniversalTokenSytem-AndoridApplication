@@ -17,7 +17,12 @@ namespace CCTokenSystem.Controllers
         [HttpGet]
         public IEnumerable<Department> GetAllDepartment()
          {
-            return dbcontext.Departments.AsEnumerable<Department>();
+            var department = dbcontext.Departments.AsEnumerable<Department>();
+            if(department == null)
+            {
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+            }
+            return department;
         }
         [HttpGet]
         public HttpResponseMessage GetbyDepartmentID([FromUri]int CampusID)

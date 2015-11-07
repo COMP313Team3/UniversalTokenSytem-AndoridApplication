@@ -4,7 +4,7 @@
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\CentennialCollege\\Sem-4\\COMP-313\\UniversalTokenSytem-AndoridApplication\\CCTokenSystem\\CCTokenSystem\\obj\\Release\\Package\\PackageTmp$" />
     <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\CentennialCollege\\Sem-4\\COMP-313\\UniversalTokenSytem-AndoridApplication\\CCTokenSystem\\CCTokenSystem\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="CCTokenSystemContext-Web.config Connection String" description="" value="Server=tcp:q0pujqwbyg.database.windows.net,1433;Database=CCTokenSystemContext;User ID=srichatala@cencollege;Password=SriPrabhavathi1;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" tags="">
+  <parameter name="CCTokenSystemContext-Web.config Connection String" description="" value="Data Source=cencollege.database.windows.net;Initial Catalog=CCTokenSystemContext;Persist Security Info=True;User ID=srichatala;Password=SriPrabhavathi1" tags="">
     <parameterEntry kind="XmlFile" scope="D:\\CentennialCollege\\Sem-4\\COMP-313\\UniversalTokenSytem-AndoridApplication\\CCTokenSystem\\CCTokenSystem\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CCTokenSystemContext']/@connectionString" />
   </parameter>
 </parameters>
