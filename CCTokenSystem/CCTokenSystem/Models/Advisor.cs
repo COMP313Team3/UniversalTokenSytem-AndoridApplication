@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,7 +19,7 @@ namespace CCTokenSystem.Models
         public string Phoneno { get; set; }
         [ForeignKey("Department")]
         public int dept_Id { get; set; }
-
+        [JsonIgnore]
         public virtual Department Department { get; set; }
     }
 }
