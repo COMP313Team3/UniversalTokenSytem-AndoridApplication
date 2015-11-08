@@ -14,9 +14,10 @@ namespace CCTokenSystem.Models
         public int dept_Id { get; set; }
         public string dept_name { get; set; }
         public string room_no { get; set; }
+
         [ForeignKey("Campus")]
         public int campus_Id { get; set; }
-
+        [JsonIgnore]
         public virtual Campus Campus { get; set; }
 
     }

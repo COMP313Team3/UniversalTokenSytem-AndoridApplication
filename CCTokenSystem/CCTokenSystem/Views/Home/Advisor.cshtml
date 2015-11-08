@@ -88,7 +88,7 @@
                     <th>Last Name</th>
                     <th>Phone Number</th>
                     <th>Email</th>
-                    <th>Department</th>
+                    @*<th>Department</th>*@
                     <th>Actions</th>
                 </tr>
                 <tr ng-repeat="advisor in AdvisorData">
@@ -107,9 +107,9 @@
                     <td>
                         {{advisor.Email}}
                     </td>
-                    <td>
-                        {{advisor.Department.dept_name}}
-                    </td>
+                    @*<td>
+                        {{advisor.dept_Id}}
+                    </td>*@
                     <td>
                         <button class="btn btn-warning" ng-click="Select(advisor.Advisor_Id)"><span class="glyphicon glyphicon-pencil"></span></button>
                         <button class="btn btn-danger" ng-click="Remove(advisor.Advisor_Id)"><span class="glyphicon glyphicon-remove"></span></button>
