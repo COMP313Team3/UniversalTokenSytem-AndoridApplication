@@ -3,7 +3,6 @@
 /// <reference path="angular-mocks.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="controller/campusctrl/campusctrl.js" />
-/// <reference path="controller/departmentctrl/department.js" />
 /// <reference path="controller/studentctrl/studentctrl.js" />
 /// <reference path="jquery-2.1.4.js" />
 /// <reference path="jquery-2.1.4.min.js" />
