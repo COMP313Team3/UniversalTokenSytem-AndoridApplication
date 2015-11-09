@@ -19,11 +19,25 @@ namespace CCTokenSystem.Models
     
         public CCTokenSystemContext() : base("name=CCTokenSystemContext")
         {
+
         }
 
 
         //Initialization of table to into database
         public DbSet<Student> Students { get; set; }
+
+        //Initialization of Campus table
+        public DbSet<Campus> Campuses { get; set; }
+
+        //Initialization of Departments table
+        public DbSet<Department> Departments { get; set; }
+
+        //Initialization of Advisor table
+        public DbSet<Advisor> Advisors { get; set; }
+
+        //Initialization of token table
+        public DbSet<Token> Tokens { get; set; }
+
 
         //onModelCreating method will remove pluralizing the model name
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
