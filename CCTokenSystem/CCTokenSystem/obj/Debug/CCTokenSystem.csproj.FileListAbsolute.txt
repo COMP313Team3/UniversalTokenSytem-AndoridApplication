@@ -65,9 +65,6 @@ E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\WebGre
 D:\kaykay\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.csprojResolveAssemblyReference.cache
 D:\kaykay\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.dll
 D:\kaykay\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.pdb
-E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\CCTokenSystem.dll.config
-E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\CCTokenSystem.dll
-E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\CCTokenSystem.pdb
 >>>>>>> f3f5160638ec95f66551e080b12deb40288fab24
 E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\EntityFramework.xml
 E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\EntityFramework.SqlServer.xml
@@ -86,3 +83,23 @@ E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\Antlr3
 E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.csprojResolveAssemblyReference.cache
 E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.dll
 E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.pdb
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\CCTokenSystem.dll.config
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\CCTokenSystem.dll
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\CCTokenSystem.pdb
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\EntityFramework.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\EntityFramework.SqlServer.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\Newtonsoft.Json.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Net.Http.Formatting.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.Helpers.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.Http.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.Http.WebHost.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.Mvc.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.Optimization.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.Razor.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.WebPages.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.WebPages.Deployment.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.WebPages.Razor.xml
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\Antlr3.Runtime.pdb
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.csprojResolveAssemblyReference.cache
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.dll
+D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Debug\CCTokenSystem.pdb
