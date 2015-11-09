@@ -32,22 +32,35 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="provience" class="col-sm-5 control-label">Provience:</label>
+            <label for="province" class="col-sm-5 control-label">Province:</label>
             <div class="col-sm-7">
-                <input type="text" name="provience" class="form-control" ng-pattern="/^[a-zA-Z ]*$/"  ng-model="campus.Provience" placeholder="Provience" required>
-                <span style="color:red" ng-show="myForm.provience.$dirty && myForm.provience.$invalid">
-                    <span ng-show="myForm.provience.$error.required">Provience required</span>
-                    <span ng-show="myForm.provience.$error.pattern">Invalid Provience Name</span>
-                </span>
+                @Html.DropDownList("Province", new List<SelectListItem>
+{
+new SelectListItem{Text="Ontario (ON)",Value=""},
+new SelectListItem{Text="Quebec (OC)",Value=""},
+new SelectListItem{Text="British Columbia (BC)",Value=""},
+new SelectListItem{Text="Alberta (AB)",Value=""},
+new SelectListItem{Text="Manitoba (MB)",Value=""},
+new SelectListItem{Text="Saskatchewan (SK)",Value=""},
+new SelectListItem{Text="Nova Scotia (NS)",Value=""},
+new SelectListItem{Text="New Brunswick (NB)",Value=""},
+new SelectListItem{Text="New Foundland and Labrador (NL)",Value=""},
+new SelectListItem{Text="Prince Edward Island (PE)",Value=""},
+new SelectListItem{Text="Northwest Territories (NT)",Value=""},
+new SelectListItem{Text="Yukon (YT)",Value=""},
+new SelectListItem{Text="Nunavut (NU)",Value=""},
+}, "Select Province", new { @class = "form-control" })
+
             </div>
         </div>
         <div class="form-group">
             <label for="postalcode" class="col-sm-5 control-label">Postal Code:</label>
             <div class="col-sm-7">
-                <input type="text" name="postalcode" class="form-control" ng-model="campus.PostalCode" placeholder="Postal Code" required>
+
+                <input type="text" name="postalcode" class="form-control" ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" ng-model="campus.PostalCode" placeholder="X1X 2X3" required>
                 <span style="color:red" ng-show="myForm.postalcode.$dirty && myForm.postalcode.$invalid">
-                    <span ng-show="myForm.postalcode.$error.required">Provience required</span>
-                    <span ng-show="myForm.postalcode.$error.pattern">Invalid Provience Name</span>
+                    <span ng-show="myForm.postalcode.$error.required">Postal Code required</span>
+                    <span ng-show="myForm.postalcode.$error.pattern">Invalid Postal Code</span>
                 </span>
             </div>
         </div>
@@ -64,20 +77,20 @@
         <div class="form-group">
             <div class="col-sm-offset-5 col-sm-7">
                 <input type="submit" ng-show="addSt" ng-click="Create(campus)" ng-disabled="
-                       myForm.campusname.$pristine || myForm.campusname.$dirty && myForm.campusname.$invalid || 
+                       myForm.campusname.$pristine || myForm.campusname.$dirty && myForm.campusname.$invalid ||
                        myForm.address.$pristine || myForm.address.$dirty && myForm.address.$invalid ||
                        myForm.city.$pristine || myForm.city.$dirty && myForm.city.$invalid ||
-                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid || 
-                       myForm.provience.$pristine || myForm.provience.$dirty && myForm.provience.$invalid ||
+                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid ||
+                       myForm.province.$pristine || myForm.province.$dirty && myForm.province.$invalid ||
                        myForm.input.$pristine || myForm.input.$dirty && myForm.input.$invalid" class="btn btn-success" value="Submit" />
                 <input type="submit" ng-show="updateSt" ng-click="Update(campus)" ng-disabled="
-                       myForm.campusname.$pristine || myForm.campusname.$dirty && myForm.campusname.$invalid || 
+                       myForm.campusname.$pristine || myForm.campusname.$dirty && myForm.campusname.$invalid ||
                        myForm.address.$pristine || myForm.address.$dirty && myForm.address.$invalid ||
                        myForm.city.$pristine || myForm.city.$dirty && myForm.city.$invalid ||
-                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid || 
-                       myForm.provience.$pristine || myForm.provience.$dirty && myForm.provience.$invalid ||
+                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid ||
+                       myForm.province.$pristine || myForm.province.$dirty && myForm.province.$invalid ||
                        myForm.input.$pristine || myForm.input.$dirty && myForm.input.$invalid"
-                        class="btn btn-warning" value="Update" />
+                       class="btn btn-warning" value="Update" />
                 <input type="submit" ng-show="clearSt" ng-click="Clear()" class="btn btn-default" value="Create New" />
             </div>
         </div>
@@ -90,7 +103,7 @@
                     <th>Campus Name</th>
                     <th>Address</th>
                     <th>City</th>
-                    <th>Provience</th>
+                    <th>Province</th>
                     <th>Postal Code</th>
                     <th>Contact Number</th>
                     <th>Actions</th>
@@ -109,7 +122,7 @@
                         {{campus.City}}
                     </td>
                     <td>
-                        {{campus.Provience}}
+                        {{campus.Province}}
                     </td>
                     <td>
                         {{campus.PostalCode}}
