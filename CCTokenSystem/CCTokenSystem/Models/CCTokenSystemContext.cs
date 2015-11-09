@@ -35,6 +35,10 @@ namespace CCTokenSystem.Models
         //Initialization of Advisor table
         public DbSet<Advisor> Advisors { get; set; }
 
+        //Initialization of token table
+        public DbSet<Token> Tokens { get; set; }
+
+
         //onModelCreating method will remove pluralizing the model name
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

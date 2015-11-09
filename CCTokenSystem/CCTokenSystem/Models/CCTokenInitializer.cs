@@ -121,6 +121,40 @@ namespace CCTokenSystem.Models
             }
             context.SaveChanges();
 
+
+
+            var Tokens = new List<Token>
+            {
+                new Token
+                {
+                    tokenid= "ICET01",
+                    student_id=1,
+                    dept_Id=1,
+                    CampusId=1,
+                    Advisor_Id=1,
+                    createdTime =new DateTime(2015,11,12,12,30,00),
+                    closingTime=new DateTime(2015,11,12,1,30,00),
+                    issue="unable to register a subject",
+                    status= 'c'
+                },
+                new Token
+                {
+                    tokenid= "ICET02",
+                    student_id=2,
+                    dept_Id=1,
+                    CampusId=1,
+                    Advisor_Id=1,
+                    createdTime =new DateTime(2015,11,12,12,30,00),
+                    closingTime=new DateTime(2015,11,12,1,30,00),
+                    issue="unable to pay fees online",
+                    status= 'c'
+                }
+            };
+            foreach (var token in Tokens)
+            {
+                context.Tokens.Add(token);
+            }
+            context.SaveChanges();
         }
     }
 }
