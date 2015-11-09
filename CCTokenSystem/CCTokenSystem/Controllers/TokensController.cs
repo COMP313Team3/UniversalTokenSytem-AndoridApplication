@@ -27,7 +27,7 @@ namespace CCTokenSystem.Controllers
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            Newtoken.status = 'o';
+            Newtoken.status = "Active";
             dbcontext.Tokens.Add(Newtoken);
 
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Newtoken);
@@ -46,7 +46,7 @@ namespace CCTokenSystem.Controllers
             {
                  token = (Token)tokentoupdate;
 
-                token.status = 'c';
+                token.status = "InActive";
                 token.Advisor_Id = NewToken.Advisor_Id;
 
                 dbcontext.Entry(tokentoupdate).State = EntityState.Modified;

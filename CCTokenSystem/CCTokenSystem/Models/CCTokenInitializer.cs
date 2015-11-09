@@ -135,7 +135,7 @@ namespace CCTokenSystem.Models
                     createdTime =new DateTime(2015,11,12,12,30,00),
                     closingTime=new DateTime(2015,11,12,1,30,00),
                     issue="unable to register a subject",
-                    status= 'c'
+                    status= "InActive"
                 },
                 new Token
                 {
@@ -147,7 +147,7 @@ namespace CCTokenSystem.Models
                     createdTime =new DateTime(2015,11,12,12,30,00),
                     closingTime=new DateTime(2015,11,12,1,30,00),
                     issue="unable to pay fees online",
-                    status= 'c'
+                    status= "InActive"
                 }
             };
             foreach (var token in Tokens)
