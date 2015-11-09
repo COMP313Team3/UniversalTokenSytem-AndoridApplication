@@ -19,6 +19,7 @@ namespace CCTokenSystem.Models
     
         public CCTokenSystemContext() : base("name=CCTokenSystemContext")
         {
+
         }
 
 

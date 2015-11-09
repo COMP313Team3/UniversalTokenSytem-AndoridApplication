@@ -30,6 +30,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="CCTokenSystemContext-Deployment" Order="1" xmlns="">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=tcp:cencollege.database.windows.net,1433%3bInitial Catalog=CCTokenSystemContext%3bIntegrated Security=False%3bUser ID=srichatala%40cencollege%3bPassword=SriPrabhavathi1%3bConnect Timeout=30%3bEncrypt=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\CCTokenSystemContext-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -257,8 +268,11 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="bin\CCTokenSystem.dll.config" />
+    <None Include="Properties\PublishProfiles\cctoken %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\cctoken.pubxml" />
+    <Content Include="Scripts\Controller\AdvisorCtrl\AdvisorCtrl.js" />
     <Content Include="Scripts\Controller\CampusCtrl\CampusCtrl.js" />
+    <Content Include="Scripts\Controller\DeptCtrl\DeptCtrl.js" />
     <Content Include="Scripts\Controller\StudentCtrl\StudentCtrl.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -287,6 +301,7 @@
     <Content Include="Views\Home\Campus.cshtml" />
     <Content Include="Views\Home\Student.cshtml" />
     <Content Include="Views\Home\Advisor.cshtml" />
+    <Content Include="Views\Home\Department.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

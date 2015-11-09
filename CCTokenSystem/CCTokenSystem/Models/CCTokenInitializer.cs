@@ -49,7 +49,6 @@ namespace CCTokenSystem.Models
             {
                 new Campus
                 {
-                    CampusId=1,
                     CampusName="Progress Campus",
                     CampusAddress="941 Progress Avenue",
                     City="Toronto",
@@ -59,7 +58,6 @@ namespace CCTokenSystem.Models
                 },
                 new Campus
                 {
-                    CampusId=2,
                     CampusName=" Morningside Campus",
                     CampusAddress="940 Progress Avenue",
                     City="Toronto",
@@ -79,14 +77,12 @@ namespace CCTokenSystem.Models
             {
                 new Department
                 {
-                    dept_Id=1,
                     dept_name ="ICET",
                     room_no = "A12",
                     campus_Id =1
                  },
                 new Department
                 {
-                    dept_Id=2,
                     dept_name ="ENGLISH",
                     room_no = "E12",
                     campus_Id =1
@@ -104,7 +100,6 @@ namespace CCTokenSystem.Models
             {
                 new Advisor
                 {
-                    Advisor_Id=1,
                     Firstname="Sara",
                     Lastname="sashthri",
                     Email="Sara@centennial.com",
@@ -113,7 +108,6 @@ namespace CCTokenSystem.Models
                 },
                 new Advisor
                 {
-                    Advisor_Id=2,
                     Firstname="Advisor1",
                     Lastname="Advisor1",
                     Email="Advisor1@centennial.com",
