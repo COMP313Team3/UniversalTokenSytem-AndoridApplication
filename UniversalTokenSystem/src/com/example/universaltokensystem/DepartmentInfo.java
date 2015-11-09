@@ -40,9 +40,10 @@ public class DepartmentInfo extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.department_info);
-		//TextView campusInfo = (TextView) findViewById(R.id.CampusInfo);
+		TextView campusInfo = (TextView) findViewById(R.id.CampusInfo);
 		Intent intent = getIntent();
-		String campusList = "Welcome to " + intent.getExtras().getString("CampusInfo").toString() + " Campus";
+		String campusList = "Welcome to " + intent.getExtras().getString("CampusInfo").toString() + "";
+		campusInfo.setText(campusList);
 		ArrayList<String> campusData = intent.getExtras().getStringArrayList("CampusData");
 		CampusId = campusData.get(0);
 		//campusInfo.setText("Campus ID:"+campusData.get(0)+" , Campus Name:"+campusData.get(1)+" , Campus Address:"+campusData.get(2));
