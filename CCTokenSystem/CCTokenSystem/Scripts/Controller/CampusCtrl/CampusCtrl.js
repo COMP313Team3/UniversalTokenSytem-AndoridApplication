@@ -18,6 +18,7 @@ app.controller("CampusCtrl", function ($scope, $http) {
 
     //Add student record into database
     $scope.Create = function (campus) {
+        console.log(campus);
         $http.post("/api/Campuses", campus)
             .success(function (response) {
                 $scope.CampusInfo();

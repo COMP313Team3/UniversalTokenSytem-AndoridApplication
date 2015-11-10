@@ -34,27 +34,26 @@
         <div class="form-group">
             <label for="campusName" class="col-sm-5 control-label">Province:</label>
             <div class="col-sm-7">
-                <select name="campus" class="form-control" ng-model="campus.Provience">
-                    <option value="">Ontario</option>
-                    <option value="">Quebec</option>
-                    <option value="">British Columbia</option>
-                    <option value="">Alberta</option>
-                    <option value="">Manitoba</option>
-                    <option value="">Saskatchewan</option>
-                    <option value="">Nova Scotia</option>
-                    <option value="">New Brunswick</option>
-                    <option value="">New Foundland and Labrador</option>
-                    <option value="">Prince Edward Island</option>
-                    <option value="">Northwest Territories</option>
-                    <option value="">Yukon </option>
-                    <option value="">Nunavut </option>
+                <select name="campus" class="form-control" ng-model="campus.Province" >
+                    <option value="Alberta">Alberta</option>
+                    <option value="British Columbia">British Columbia</option>
+                    <option value="Manitoba">Manitoba</option>
+                    <option value="New Brunswick">New Brunswick</option>
+                    <option value="New Foundland and Labrador">New Foundland and Labrador</option>
+                    <option value="Northwest Territories">Northwest Territories</option>
+                    <option value="Nova Scotia">Nova Scotia</option>
+                    <option value="Nunavut">Nunavut</option>
+                    <option value="Ontario">Ontario</option>
+                    <option value="Prince Edward Island">Prince Edward Island</option>
+                    <option value="Quebec">Quebec</option>
+                    <option value="Saskatchewan">Saskatchewan</option>
+                    <option value="Yukon">Yukon</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label for="postalcode" class="col-sm-5 control-label">Postal Code:</label>
             <div class="col-sm-7">
-
                 <input type="text" name="postalcode" class="form-control" ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" ng-model="campus.PostalCode" placeholder="X1X 2X3" required>
                 <span style="color:red" ng-show="myForm.postalcode.$dirty && myForm.postalcode.$invalid">
                     <span ng-show="myForm.postalcode.$error.required">PostalCode required</span>
@@ -86,7 +85,7 @@
                        myForm.address.$dirty && myForm.address.$invalid ||
                        myForm.city.$dirty && myForm.city.$invalid ||
                        myForm.pnumber.$dirty && myForm.pnumber.$invalid ||
-                       myForm.provience.$dirty && myForm.provience.$invalid"
+                       myForm.province.$dirty && myForm.province.$invalid"
                        class="btn btn-warning" value="Update" />
                 <input type="submit" ng-show="clearSt" ng-click="Clear()" class="btn btn-default" value="Create New" />
             </div>

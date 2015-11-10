@@ -58,7 +58,7 @@ namespace CCTokenSystem.Controllers
                     response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                     return response;
                 }
-                catch (Exception ex)
+                catch
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.NotModified, "Failed to update");
                 }
