@@ -24,14 +24,19 @@ namespace CCTokenSystem.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAdvisorbyID([FromUri]int AdvisorID)
+        public HttpResponseMessage GetAdvisorbyID(int Id)
         {
-            var advisor = dbcontext.Advisors.Where(adv => adv.Advisor_Id== AdvisorID);
+            var advisor = dbcontext.Advisors.Where(adv => adv.Advisor_Id== Id).FirstOrDefault();
 
             if (advisor == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
+
+            Advisor advi = (Advisor)advisor;
+
+
+            advi.campusid = advi.Department.campus_Id;
 
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
 
