@@ -8,4 +8,8 @@
     <string name="submitstudentnum">\t Let\'s get started ➜ \t  </string>
     <string name="copyright">Copyright@2015 UTS_CentennialCollege</string>
    <color name="backgroundcolor">#D4DF38</color>
+   <string name="issue">Issue</string>
+   <string name="generate">\t Generate Token \t</string>
+   <string name="department">Department</string>
+   <string name="room">Room #</string>
 </resources>

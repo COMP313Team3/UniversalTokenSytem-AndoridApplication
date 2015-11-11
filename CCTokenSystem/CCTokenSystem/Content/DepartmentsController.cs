@@ -11,47 +11,48 @@ using System.Web.Http;
 
 namespace CCTokenSystem.Controllers
 {
-    public class AdvisorController : ApiController
+    public class DepartmentController : ApiController
     {
-
-        //
         CCTokenSystemContext dbcontext = new CCTokenSystemContext();
 
         [HttpGet]
-        public IEnumerable<Advisor> GetAllAdvisors()
+        public IEnumerable<Department> GetAllStudents()
         {
-            return dbcontext.Advisors.AsEnumerable<Advisor>();
+            return dbcontext.Departments.AsEnumerable<Department>();
         }
-
-        [HttpGet]
-        public HttpResponseMessage GetAdvisorbyID(int Id)
+        public HttpResponseMessage GetbyStudentID([FromUri]int StudentID)
         {
-            var advisor = dbcontext.Advisors.Where(adv => adv.Advisor_Id== Id).FirstOrDefault();
-
-            if (advisor == null)
+            var student = dbcontext.Departments.Where(sid=>sid.StudentID==StudentID);
+            if (student == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, student);
 
-            Advisor advi = (Advisor)advisor;
-
-
-            advi.campusid = advi.Department.campus_Id;
-
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
+            response.StatusCode = HttpStatusCode.Created;
 
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             return response;
         }
-
-       
-        [HttpPut]
-        public HttpResponseMessage UpdateAdvisor(Advisor advisor)
+        [HttpGet]
+        public Student GetStudentByID(int Id)
         {
-            if (advisor != null)
+            Student student = dbcontext.Departments.Find(Id);
+
+            if (student == null)
             {
-                dbcontext.Entry(advisor).State = EntityState.Modified;
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+            }
+            return student;
+        }
+
+        [HttpPut]
+        public HttpResponseMessage UpdateStudent(Student student)
+        {
+            if (student != null)
+            {
+                dbcontext.Entry(student).State = EntityState.Modified;
             }
 
             try
@@ -64,7 +65,9 @@ namespace CCTokenSystem.Controllers
             }
 
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, student);
+
+            response.StatusCode = HttpStatusCode.Created;
 
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
@@ -72,20 +75,9 @@ namespace CCTokenSystem.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage CreateAdvisor(Advisor advisor)
+        public HttpResponseMessage CreateStudent(Student student)
         {
-            if (advisor != null)
-            {
-                if (dbcontext.Advisors.Find(advisor.Advisor_Id) == null)
-                {
-                    dbcontext.Advisors.Add(advisor);
-                }
-                else
-                {
-                    HttpResponseMessage errresponse = Request.CreateResponse(HttpStatusCode.Conflict);
-                    return errresponse;
-                }
-            }
+            dbcontext.Students.Add(student);
             try
             {
                 dbcontext.SaveChanges();
@@ -95,7 +87,9 @@ namespace CCTokenSystem.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, student);
+
+            response.StatusCode = HttpStatusCode.Created;
 
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
@@ -103,15 +97,15 @@ namespace CCTokenSystem.Controllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage DeleteAdvisor(int AdvisorID)
+        public HttpResponseMessage DeleteStudent(int Id)
         {
-            Advisor advisor = dbcontext.Advisors.Find(AdvisorID);
+            Student student = dbcontext.Students.Find(Id);
 
-            if (advisor == null)
+            if (student == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-            dbcontext.Advisors.Remove(advisor);
+            dbcontext.Students.Remove(student);
 
             try
             {

@@ -17,6 +17,10 @@ namespace CCTokenSystem.Models
         public string Lastname { get; set; }
         public string Email { get; set; }
         public string Phoneno { get; set; }
+
+        [NotMapped]
+        public int campusid { get; set; }
+
         [ForeignKey("Department")]
         public int dept_Id { get; set; }
         [JsonIgnore]

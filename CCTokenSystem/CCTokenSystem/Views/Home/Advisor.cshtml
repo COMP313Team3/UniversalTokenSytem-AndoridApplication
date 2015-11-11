@@ -5,9 +5,8 @@
         <div class="form-group">
             <label for="campusName" class="col-sm-5 control-label">Campus Name:</label>
             <div class="col-sm-7">
-                <select name="campus" class="form-control" ng-model="CampusId" ng-change="select(CampusId)"
+                <select name="campus" class="form-control" ng-model="advisor.campusid" ng-change="select(advisor.campusid)"
                         ng-options="cam.CampusId as cam.CampusName for cam in CampusData">
-                    <option value="">Select Campus Name</option>
                 </select>
             </div>
         </div>
@@ -16,7 +15,6 @@
             <div class="col-sm-7">
                 <select name="dept_id" class="form-control" ng-model="advisor.dept_id" required
                         ng-options="dept.dept_Id as dept.dept_name for dept in DeptData">
-                    <option value="">Select Department Name</option>
                 </select>
                 <span style="color:red" ng-show="myForm.dept_id.$dirty && myForm.dept_id.$invalid">
                     <span ng-show="myForm.course.$error.required">Department name is required</span>

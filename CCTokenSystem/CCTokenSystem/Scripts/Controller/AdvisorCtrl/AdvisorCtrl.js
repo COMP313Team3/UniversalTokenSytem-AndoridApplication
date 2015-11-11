@@ -1,8 +1,20 @@
 ﻿var app = angular.module("myWebAPI", [])
 app.controller("AdvisorCtrl", function ($scope, $http) {
 
+
+
     $scope.renderCampusModel = function (response) {
+
+        $scope.advisor = {};
         $scope.CampusData = response;
+        $scope.advisor.campusid = $scope.CampusData[0].CampusId;
+
+        $http.get("/api/Department?CampusId=" + $scope.CampusData[0].CampusId)
+          .success(function (response) {
+              console.log(response);
+              $scope.DeptData = response;
+              $scope.advisor.dept_id = response[0].dept_Id;
+          });
     };
 
     $scope.CampusInfo = function () {
@@ -55,7 +67,15 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
                 $scope.addSt = false;
                 $scope.updateSt = true;
                 $scope.clearSt = true;
-                $scope.dept = response;
+                $scope.advisor = response;
+
+                $http.get("/api/Department?CampusId=" + $scope.advisor.campusid)
+                 .success(function (response) {
+                     console.log(response);
+                     $scope.DeptData = response;
+              });
+
+                $scope.advisor.dept_id = response.dept_Id;
             });
     };
 
@@ -66,6 +86,8 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
                 $scope.updateSt = true;
                 $scope.DeptInfo();
             });
+
+        $scope.AdviosrInfo();
     };
 
     $scope.Clear = function () {
