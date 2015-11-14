@@ -16,27 +16,28 @@ namespace CCTokenSystem.Controllers
     {
         CCTokenSystemContext dbcontext = new CCTokenSystemContext();
 
-
+        [HttpPost]
         public HttpResponseMessage createToken(Token Newtoken)
         {
 
-            var token = dbcontext.Tokens.Where(tok => tok.tokenid == Newtoken.tokenid);
+            var count = dbcontext.Tokens.Where(tok => string.Compare(tok.tokenid,Newtoken.tokenid) ==0 ).Count();
 
-            if (token == null)
+            if (count !=0)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
             Newtoken.status = "Active";
             dbcontext.Tokens.Add(Newtoken);
+            dbcontext.SaveChanges();
 
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Newtoken);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;
         }
 
-
-        public HttpResponseMessage CloseToken(Token NewToken)
+        [HttpPost]
+        public HttpResponseMessage CloseToken(int tokenId,Token NewToken)
         {
             var tokentoupdate = dbcontext.Tokens.Where(tok => tok.tokenid == NewToken.tokenid);
 
@@ -71,15 +72,20 @@ namespace CCTokenSystem.Controllers
           
         }
 
-
+        [HttpGet]
         public HttpResponseMessage RetrieveTokensByDept([FromUri]int deptID)
         {
 
-            var tokens = dbcontext.Tokens.Where(tok => tok.dept_Id == deptID);
+            List<Token> tokens = dbcontext.Tokens.Where(tok => tok.dept_Id == deptID).ToList<Token>();
+
+          
+
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, tokens);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;
         }
+
+        [HttpGet]
         public HttpResponseMessage RetrieveTokensForStudent([FromUri]int studentID)
         {
             var tokens = dbcontext.Tokens.Where(tok => tok.student_id  == studentID);
@@ -88,9 +94,10 @@ namespace CCTokenSystem.Controllers
             return response;
         }
 
-        public HttpResponseMessage RetrieveTokensCountByDept([FromUri]int deptID)
+        [HttpGet]
+        public HttpResponseMessage RetrieveTokensCountByDept([FromUri]int departmentID)
         {
-            var tokenscount = dbcontext.Tokens.Where(tok => tok.dept_Id == deptID).Count();
+            var tokenscount = dbcontext.Tokens.Where(tok => tok.dept_Id == departmentID).Count();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, tokenscount);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;
