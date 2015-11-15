@@ -10,6 +10,6 @@
    <color name="backgroundcolor">#D4DF38</color>
    <string name="issue">Issue</string>
    <string name="generate">\t Generate Token \t</string>
-   <string name="department">Department</string>
+   <string name="department">Department Name</string>
    <string name="room">Room #</string>
 </resources>
