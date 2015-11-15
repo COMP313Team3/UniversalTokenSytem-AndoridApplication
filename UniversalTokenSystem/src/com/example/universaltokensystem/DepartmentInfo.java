@@ -20,22 +20,39 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.universaltokensystem.CampusInfo.RestOperations;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class DepartmentInfo extends Activity {
 
 	String CampusId;
+	List<String> CampusData;
+	String studentId;
+
+	public String getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
+	}
+
+	public List<String> getCampusData() {
+		return CampusData;
+	}
+
+	public void setCampusData(List<String> campusData) {
+		CampusData = campusData;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,10 +63,12 @@ public class DepartmentInfo extends Activity {
 		campusInfo.setText(campusList);
 		ArrayList<String> campusData = intent.getExtras().getStringArrayList("CampusData");
 		CampusId = campusData.get(0);
-		//campusInfo.setText("Campus ID:"+campusData.get(0)+" , Campus Name:"+campusData.get(1)+" , Campus Address:"+campusData.get(2));
+		setStudentId(campusData.get(3));
+		setCampusData(campusData);
+		// campusInfo.setText("Campus ID:"+campusData.get(0)+" , Campus
+		// Name:"+campusData.get(1)+" , Campus Address:"+campusData.get(2));
 		new RestOperations().execute();
 	}
-	
 
 	public class RestOperations extends AsyncTask<Void, Void, String> {
 		protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
@@ -64,20 +83,20 @@ public class DepartmentInfo extends Activity {
 			}
 			return out.toString();
 		}
-	
+
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-	
+
 		}
-	
+
 		@Override
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext localContext = new BasicHttpContext();
-			String restStudentURL = "http://cctoken.azurewebsites.net/api/department?CampusId="+CampusId;
+			String restStudentURL = "http://cctokens.azurewebsites.net/api/department?CampusId=" + CampusId;
 			HttpGet httpGet = new HttpGet(restStudentURL);
 			String text = null;
 			try {
@@ -89,7 +108,7 @@ public class DepartmentInfo extends Activity {
 			}
 			return text;
 		}
-	
+
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
@@ -106,32 +125,40 @@ public class DepartmentInfo extends Activity {
 					String room_no = json_data.getString("room_no");
 					// String Campus = name;
 					items.add(dept_name);
-					campusJSONData.put(dept_name, Arrays.asList(id, dept_name, room_no));
-	
+					campusJSONData.put(dept_name, Arrays.asList(id, dept_name, room_no, getStudentId()));
+
 					// items.add(json_data.getString("CampusName"));
 					// items.add(json_data.getString("CampusAddress"));
 				}
-	
+
 				ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(DepartmentInfo.this,
 						android.R.layout.simple_list_item_1, android.R.id.text1, items);
 				listView.setAdapter(mArrayAdapter);
 				listView.setOnItemClickListener(new OnItemClickListener() {
-	
+
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 						String name = listView.getItemAtPosition(arg2).toString();
-						/*Intent intentCampus = new Intent(DepartmentInfo.class);
-						intentCampus.putExtra("CampusInfo", name);
-						intentCampus.putStringArrayListExtra("CampusData",
+						
+
+						Intent intentToken = new Intent(DepartmentInfo.this, TokenInfo.class);
+						intentToken.putExtra("DepartmentName", name);
+						intentToken.putStringArrayListExtra("DepartmentData",
 								new ArrayList<String>(campusJSONData.get(name)));
-						startActivity(intentCampus);*/
-	
+						intentToken.putStringArrayListExtra("CampusData",
+								new ArrayList<String>(getCampusData()));
+						startActivity(intentToken);
+						// showCustomTokenDialog();
+
 					}
 				});
+
 			} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+
 		}
 	}
+
 }

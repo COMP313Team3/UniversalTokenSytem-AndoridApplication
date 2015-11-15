@@ -17,36 +17,6 @@
         android:src="@drawable/collegelogo" />
 
     <TextView
-        android:id="@+id/txtIssue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/txtStuName"
-        android:layout_marginTop="17dp"
-        android:text="@string/issue"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/txtDepartment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtIssue"
-        android:layout_below="@+id/txtIssue"
-        android:layout_marginTop="16dp"
-        android:text="@string/department"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/txtStudentID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txtDepartment"
-        android:layout_toEndOf="@+id/txtIssue"
-        android:layout_toRightOf="@+id/txtDepartment"
-        android:ems="6"
-        android:inputType="number" />
-
-    <TextView
         android:id="@+id/TextView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,26 +25,6 @@
         android:layout_marginTop="23dp"
         android:text="@string/copyright"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/txtStuName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="25dp"
-        android:text="@string/studentid"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/txtRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtDepartment"
-        android:layout_below="@+id/txtDepartment"
-        android:layout_marginTop="18dp"
-        android:text="@string/room"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -96,5 +46,100 @@
         android:layout_below="@+id/btnLogin"
         android:layout_marginTop="16dp"
         android:background="#42454a" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtStuName"
+        android:layout_alignBottom="@+id/txtStuName"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignRight="@+id/TextView01"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/txtIssue"
+        android:layout_toRightOf="@+id/txtRoom"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtDepartment"
+        android:layout_alignBottom="@+id/txtDepartment"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignRight="@+id/imageView1"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtRoom"
+        android:layout_alignBottom="@+id/txtRoom"
+        android:layout_alignLeft="@+id/TextView03"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/txtRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtDepartment"
+        android:layout_below="@+id/txtDepartment"
+        android:text="@string/room"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtRoom"
+        android:layout_below="@+id/txtRoom"
+        android:text="Campus Name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/TextView01"
+        android:layout_below="@+id/txtRoom"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/txtDepartment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtIssue"
+        android:layout_below="@+id/editText1"
+        android:text="@string/department"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/txtIssue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtStuName"
+        android:layout_below="@+id/txtStuName"
+        android:layout_marginTop="14dp"
+        android:text="@string/issue"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/txtStuName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="19dp"
+        android:text="@string/studentid"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

@@ -33,12 +33,32 @@ import android.widget.TextView;
 
 public class CampusInfo extends Activity {
 
+	private String studentId;
+	private String studentTableId;
+
+	public String getStudentTableId() {
+		return studentTableId;
+	}
+
+	public void setStudentTableId(String studentTableId) {
+		this.studentTableId = studentTableId;
+	}
+
+	public String getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.campus_info);
 		TextView sID = (TextView) findViewById(R.id.StudentID);
 		String studentList = getIntent().getExtras().getString("StudentInfo").toString();
+		setStudentId(getIntent().getExtras().getString("StudentID").toString());
 		try {
 			JSONArray stList = new JSONArray(studentList);
 			for (int i = 0; i < stList.length(); i++) {
@@ -46,7 +66,9 @@ public class CampusInfo extends Activity {
 				String st_FName = stObj.getString("Firstname");
 				String st_LName = stObj.getString("Lastname");
 				String st_FullName = "Welcome to CCToken System: " + st_FName + " " + st_LName;
+				String st_ID = stObj.getString("Id");
 				sID.setText(st_FullName);
+				setStudentTableId(st_ID);
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -81,7 +103,7 @@ public class CampusInfo extends Activity {
 			// TODO Auto-generated method stub
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext localContext = new BasicHttpContext();
-			String restStudentURL = "http://cctoken.azurewebsites.net/api/campuses/";
+			String restStudentURL = "http://cctokens.azurewebsites.net/api/campuses/";
 			HttpGet httpGet = new HttpGet(restStudentURL);
 			String text = null;
 			try {
@@ -110,7 +132,7 @@ public class CampusInfo extends Activity {
 					String address = json_data.getString("CampusAddress");
 					// String Campus = name;
 					items.add(name);
-					campusJSONData.put(name, Arrays.asList(id, name, address));
+					campusJSONData.put(name, Arrays.asList(id, name, address, getStudentId(),getStudentTableId()));
 
 					// items.add(json_data.getString("CampusName"));
 					// items.add(json_data.getString("CampusAddress"));
@@ -126,8 +148,7 @@ public class CampusInfo extends Activity {
 						String name = listView.getItemAtPosition(arg2).toString();
 						Intent intentCampus = new Intent(CampusInfo.this, DepartmentInfo.class);
 						intentCampus.putExtra("CampusInfo", name);
-						intentCampus.putStringArrayListExtra("CampusData",
-								new ArrayList<String>(campusJSONData.get(name)));
+						intentCampus.putStringArrayListExtra("CampusData",new ArrayList<String>(campusJSONData.get(name)));
 						startActivity(intentCampus);
 
 					}
