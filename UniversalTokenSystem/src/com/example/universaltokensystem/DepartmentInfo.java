@@ -121,11 +121,18 @@ public class DepartmentInfo extends Activity {
 				for (int i = 0; i < stList.length(); i++) {
 					JSONObject json_data = stList.getJSONObject(i);
 					String id = String.valueOf(json_data.getInt("dept_Id"));
+					System.out.println("dept_Id"+id);
 					String dept_name = json_data.getString("dept_name");
+					System.out.println("dept_name"+dept_name);
 					String room_no = json_data.getString("room_no");
+					System.out.println("room_no"+id);
 					// String Campus = name;
 					items.add(dept_name);
 					campusJSONData.put(dept_name, Arrays.asList(id, dept_name, room_no, getStudentId()));
+					System.out.println("Department List Data Department Info"+id+dept_name+ room_no+ getStudentId());
+					System.out.println("Department List Data Department Info::"+ "::Department ID::" +id+"::Department Name::"+ dept_name
+							+"::Romm No::"+ room_no+ "::Student ID::"+getStudentId());
+					
 
 					// items.add(json_data.getString("CampusName"));
 					// items.add(json_data.getString("CampusAddress"));
