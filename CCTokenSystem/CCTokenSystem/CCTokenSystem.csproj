@@ -276,7 +276,9 @@
     <Content Include="Scripts\Controller\CampusCtrl\CampusCtrl.js" />
     <Content Include="Scripts\Controller\DeptCtrl\DeptCtrl.js" />
     <Content Include="Scripts\Controller\StudentCtrl\StudentCtrl.js" />
+    <None Include="Properties\PublishProfiles\tokensys.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\Controller\TokenCtrl\TokenCtrl.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -304,6 +306,7 @@
     <Content Include="Views\Home\Student.cshtml" />
     <Content Include="Views\Home\Advisor.cshtml" />
     <Content Include="Views\Home\Department.cshtml" />
+    <Content Include="Views\Home\Token.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
