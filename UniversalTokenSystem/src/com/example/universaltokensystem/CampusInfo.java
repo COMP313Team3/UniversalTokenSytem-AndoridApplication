@@ -58,6 +58,8 @@ public class CampusInfo extends Activity {
 		setContentView(R.layout.campus_info);
 		TextView sID = (TextView) findViewById(R.id.StudentID);
 		String studentList = getIntent().getExtras().getString("StudentInfo").toString();
+		
+		// The actual student id : 300777789 
 		setStudentId(getIntent().getExtras().getString("StudentID").toString());
 		try {
 			JSONArray stList = new JSONArray(studentList);
@@ -68,10 +70,12 @@ public class CampusInfo extends Activity {
 				String st_FullName = "Welcome to CCToken System: " + st_FName + " " + st_LName;
 				String st_ID = stObj.getString("Id");
 				sID.setText(st_FullName);
+				
+				//The table student Id column value
 				setStudentTableId(st_ID);
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		new RestOperations().execute();
@@ -133,6 +137,10 @@ public class CampusInfo extends Activity {
 					// String Campus = name;
 					items.add(name);
 					campusJSONData.put(name, Arrays.asList(id, name, address, getStudentId(),getStudentTableId()));
+					
+					System.out.println("Student List Data Campus Info::"+ "::Campus ID::" +id+"::Campus Name::"+ name
+							+"::Campus Address::"+ address+ "::Student ID::"+getStudentId()+"::Student Table ID::"+getStudentTableId());
+					
 
 					// items.add(json_data.getString("CampusName"));
 					// items.add(json_data.getString("CampusAddress"));

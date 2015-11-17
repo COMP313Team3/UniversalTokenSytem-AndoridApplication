@@ -103,9 +103,9 @@ namespace CCTokenSystem.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage RetrieveTokensCountByDept([FromUri]int departmentID)
+        public HttpResponseMessage RetrieveTokensCountByDept([FromUri]int dept_Id)
         {
-            var tokenscount = dbcontext.Tokens.Where(tok => tok.dept_Id == departmentID).Count();
+            var tokenscount = dbcontext.Tokens.Where(tok => tok.dept_Id == dept_Id).Count();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, tokenscount);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;

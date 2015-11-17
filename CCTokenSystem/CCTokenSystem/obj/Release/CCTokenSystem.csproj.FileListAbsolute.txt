@@ -15,6 +15,9 @@ D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTok
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.WebPages.Deployment.xml
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\System.Web.WebPages.Razor.xml
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\Antlr3.Runtime.pdb
+<<<<<<< HEAD
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\CCTokenSystem.csprojResolveAssemblyReference.cache
+=======
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\CCTokenSystem.dll
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\CCTokenSystem.pdb

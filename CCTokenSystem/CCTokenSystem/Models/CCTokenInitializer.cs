@@ -18,7 +18,7 @@ namespace CCTokenSystem.Models
                     StudentID=300718283,
                     Firstname="Sri",
                     Lastname="Chatala",
-                    Phoneno="6477866026",
+                    Phoneno="647-786-6026",
                     Course="Software Engineering Technology",
                     Email="schatala@my.centennialcollege.ca"
                 },
@@ -26,7 +26,7 @@ namespace CCTokenSystem.Models
                     StudentID=300718284,
                     Firstname="Alagu",
                     Lastname="Murugappan",
-                    Phoneno="6477866325",
+                    Phoneno="647-786-6325",
                     Course="Software Engineering Technology",
                     Email="malagu@my.centennialcollege.ca"
                 },
@@ -34,7 +34,7 @@ namespace CCTokenSystem.Models
                     StudentID=300718285,
                     Firstname="Vangli",
                     Lastname="Rajan",
-                    Phoneno="6477866363",
+                    Phoneno="647-786-6363",
                     Course="Software Engineering Technology",
                     Email="rvangli@my.centennialcollege.ca"
                 }
@@ -54,7 +54,7 @@ namespace CCTokenSystem.Models
                     City="Toronto",
                     Province="Ontario",
                     PostalCode="M1B3X7",
-                    Phone="6474057686"
+                    Phone="647-405-7686"
                 },
                 new Campus
                 {
@@ -63,13 +63,13 @@ namespace CCTokenSystem.Models
                     City="Toronto",
                     Province="Ontario",
                     PostalCode="M1T7R3",
-                    Phone="4165674587"
+                    Phone="416-567-4587"
                 }
             };
-                foreach (var item in campus)
-                {
-                    context.Campuses.Add(item);
-                }
+            foreach (var item in campus)
+            {
+                context.Campuses.Add(item);
+            }
             context.SaveChanges();
 
 
@@ -103,7 +103,7 @@ namespace CCTokenSystem.Models
                     Firstname="Sara",
                     Lastname="sashthri",
                     Email="Sara@centennial.com",
-                    Phoneno="4165674587",
+                    Phoneno="416-567-4587",
                     dept_Id=1
                 },
                 new Advisor
@@ -111,7 +111,7 @@ namespace CCTokenSystem.Models
                     Firstname="Advisor1",
                     Lastname="Advisor1",
                     Email="Advisor1@centennial.com",
-                    Phoneno="4165674517",
+                    Phoneno="416-567-4517",
                     dept_Id=2
                 }
             };
@@ -129,7 +129,6 @@ namespace CCTokenSystem.Models
                 {
                     student_id=1,
                     dept_Id=1,
-                    Advisor_Id=1,
                     createdTime =new DateTime(2015,11,12,12,30,00),
                     issue="unable to register a subject",
                     status= "Active"

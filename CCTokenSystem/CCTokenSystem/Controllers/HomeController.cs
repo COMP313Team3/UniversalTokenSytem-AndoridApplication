@@ -38,5 +38,11 @@ namespace CCTokenSystem.Controllers
 
             return View();
         }
+        public ActionResult Token()
+        {
+            ViewBag.Title = "Token Page";
+
+            return View();
+        }
     }
 }

@@ -26,6 +26,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/txtStuName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +37,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+=======
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
         android:id="@+id/TextView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,6 +58,7 @@
         android:background="#42454a" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/txtIssue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,6 +69,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+=======
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
         android:id="@+id/txtTokenId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,6 +81,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/lblDeptName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,6 +91,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+=======
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
         android:id="@+id/txtDeptName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,4 +123,66 @@
           android:text="Room No #:"
           android:textAppearance="?android:attr/textAppearanceMedium" />
 
+<<<<<<< HEAD
+=======
+      <TextView
+          android:id="@+id/lblDeptName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/txtIssue"
+          android:layout_below="@+id/txtIssue"
+          android:layout_marginTop="18dp"
+          android:text="Dept Name:"
+          android:textAppearance="?android:attr/textAppearanceMedium" />
+
+      <TextView
+          android:id="@+id/txtStuName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/imageView1"
+          android:layout_below="@+id/imageView1"
+          android:layout_marginTop="58dp"
+          android:text="@string/studentid"
+          android:textAppearance="?android:attr/textAppearanceMedium" />
+
+      <TextView
+          android:id="@+id/txtIssue"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/txtStuName"
+          android:layout_centerVertical="true"
+          android:text="@string/tokenid"
+          android:textAppearance="?android:attr/textAppearanceMedium" />
+
+      <TextView
+          android:id="@+id/textView2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/imageView1"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="14dp"
+          android:text="Token Details"
+          android:textAppearance="?android:attr/textAppearanceLarge" />
+
+      <TextView
+          android:id="@+id/textView3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/lblDeptName"
+          android:layout_below="@+id/textView1"
+          android:layout_marginTop="18dp"
+          android:layout_toLeftOf="@+id/txtroomno"
+          android:text="Estimate Waiting Time:"
+          android:textAppearance="?android:attr/textAppearanceMedium" />
+
+      <TextView
+          android:id="@+id/txtEstimateTime"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/textView3"
+          android:layout_alignLeft="@+id/txtroomno"
+          android:layout_alignRight="@+id/txtroomno"
+          android:textAppearance="?android:attr/textAppearanceMedium" />
+
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
 </RelativeLayout>
