@@ -270,8 +270,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="bin\CCTokenSystem.dll.config" />
-    <None Include="Properties\PublishProfiles\cctoken %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\cctoken.pubxml" />
     <Content Include="Scripts\Controller\AdvisorCtrl\AdvisorCtrl.js" />
     <Content Include="Scripts\Controller\CampusCtrl\CampusCtrl.js" />
     <Content Include="Scripts\Controller\DeptCtrl\DeptCtrl.js" />

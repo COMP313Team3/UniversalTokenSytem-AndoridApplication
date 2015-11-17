@@ -29,12 +29,20 @@ namespace CCTokenSystem.Controllers
             }
 
             Newtoken.createdTime = DateTime.Now;
+
             Newtoken.tokenid = GenearateTokenID(Newtoken.dept_Id);
             Newtoken.status = "Active";
             dbcontext.Tokens.Add(Newtoken);
-            dbcontext.SaveChanges();
+            try
+            {
+                dbcontext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Newtoken);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, Newtoken.tokenid);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;
         }

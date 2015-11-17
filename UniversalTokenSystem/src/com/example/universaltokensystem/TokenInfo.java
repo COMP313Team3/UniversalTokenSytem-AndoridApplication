@@ -147,9 +147,17 @@ public class TokenInfo extends Activity {
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			String result;
+<<<<<<< HEAD
+			String token_Id;
 			ArrayList<String> Department = getDepartmentData();
 			ArrayList<String> Campus = getCampusData();
 			HttpClient httpClient = new DefaultHttpClient();
+			HttpContext localContext = new BasicHttpContext();
+=======
+			ArrayList<String> Department = getDepartmentData();
+			ArrayList<String> Campus = getCampusData();
+			HttpClient httpClient = new DefaultHttpClient();
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
 			String restTokenUrl = "http://tokensys.azurewebsites.net/api/Tokens/createToken";
 			HttpPost httpPost = new HttpPost(restTokenUrl);
 			try {
@@ -158,22 +166,47 @@ public class TokenInfo extends Activity {
 				json.put("student_id", Campus.get(4));
 				json.put("dept_Id", Department.get(0));
 				json.put("issue",  getIssue());
+<<<<<<< HEAD
+				Log.d("JSON Object", json.toString());
+=======
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
 				HttpEntity e = new StringEntity(json.toString());
 				httpPost.setEntity(e);
 				httpPost.setHeader("Accept", "application/json");
 				httpPost.setHeader("Content-type", "application/json");
 				HttpResponse response = httpClient.execute(httpPost);				
 				result = EntityUtils.toString(response.getEntity());
+<<<<<<< HEAD
+				JSONObject jObject = new JSONObject(result);
+				token_Id = jObject.getString("tokenid");
+			} catch (Exception e) {
+				return e.getLocalizedMessage();
+			}
+			return token_Id;
+=======
 				
 			} catch (Exception e) {
 				return e.getLocalizedMessage();
 			}
 			return result;
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(String token_Id) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
+			super.onPostExecute(token_Id);
+
+			if (token_Id!=null) {
+				Toast.makeText(TokenInfo.this, "Loading...", Toast.LENGTH_SHORT).show();
+							
+				Intent intent = new Intent(TokenInfo.this, CurrentToken.class);
+				intent.putStringArrayListExtra("DepartmentData",
+						new ArrayList<String>(getDepartmentData()));
+				intent.putExtra("TokenInfo", token_Id);
+				startActivity(intent);
+=======
 			super.onPostExecute(result);
 
 			if (result!=null) {
@@ -195,6 +228,7 @@ public class TokenInfo extends Activity {
 					e.printStackTrace();
 				}
 				
+>>>>>>> 5fc3a79c57cc38a70dfd85fc8cc39e7bc0fd4d26
 			} else {
 				Toast.makeText(TokenInfo.this, "Unable to create token", Toast.LENGTH_SHORT).show();
 			}
