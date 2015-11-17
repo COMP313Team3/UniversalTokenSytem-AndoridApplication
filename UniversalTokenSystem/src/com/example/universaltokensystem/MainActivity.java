@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
 			String SId = StudentID.getText().toString().trim();
 			setStudentId(SId);
 			String data = null;
-			String restStudentURL = "http://cctokens.azurewebsites.net/api/Students?StudentID=" + SId;
+			String restStudentURL = "http://tokensys.azurewebsites.net/api/Students?StudentID=" + SId;
 			HttpGet httpGet = new HttpGet(restStudentURL);
 			try {
 				HttpResponse response = httpClient.execute(httpGet, localContext);
