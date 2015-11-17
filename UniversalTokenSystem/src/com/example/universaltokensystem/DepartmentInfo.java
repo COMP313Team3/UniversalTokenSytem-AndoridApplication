@@ -96,7 +96,7 @@ public class DepartmentInfo extends Activity {
 			// TODO Auto-generated method stub
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext localContext = new BasicHttpContext();
-			String restStudentURL = "http://cctokens.azurewebsites.net/api/department?CampusId=" + CampusId;
+			String restStudentURL = "http://tokensys.azurewebsites.net/api/department?CampusId=" + CampusId;
 			HttpGet httpGet = new HttpGet(restStudentURL);
 			String text = null;
 			try {

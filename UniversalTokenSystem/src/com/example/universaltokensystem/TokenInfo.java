@@ -10,12 +10,19 @@ import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -23,7 +30,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -80,32 +89,16 @@ public class TokenInfo extends Activity {
 		ArrayList<String> departmentData = intent.getExtras().getStringArrayList("DepartmentData");
 		ArrayList<String> campusData = intent.getExtras().getStringArrayList("CampusData");
 
-		// dept_name, Arrays.asList(id, dept_name, room_no, getStudentId())
-		// campusJSONData.put(name, Arrays.asList(id, name, address,
-		// getStudentId()));
-
 		setDepartmentName(departmentName);
 		setDepartmentData(departmentData);
 		setCampusData(campusData);
 
-		// campusInfo.setText("Campus ID:"+campusData.get(0)+" , Campus
-		// Name:"+campusData.get(1)+" , Campus Address:"+campusData.get(2));
-
 		List<String> displayCampusValues = getDepartmentData();
-		// ArrayList<String> displayDepartmentValues =
-		// getDepartmentData();*/
 
-		TextView studentidtext = (TextView) findViewById(R.id.TextView02);
+		TextView studentidtext = (TextView) findViewById(R.id.txtStudentId);
 		studentidtext.setText(displayCampusValues.get(3));
-		// studentidtext.setText("300777789");
 		TextView departmenttext = (TextView) findViewById(R.id.TextView03);
 		departmenttext.setText(displayCampusValues.get(1));
-		TextView roomtext = (TextView) findViewById(R.id.TextView04);
-		// departmenttext.setText("ICET");
-		roomtext.setText(displayCampusValues.get(2));
-		// roomtext.setText("Room 02");
-		TextView campusName = (TextView) findViewById(R.id.textView05);
-		campusName.setText(getCampusData().get(1));
 		Button generateToken = (Button) findViewById(R.id.btnLogin);
 		generateToken.setOnClickListener(new OnClickListener() {
 			@Override
@@ -153,97 +146,50 @@ public class TokenInfo extends Activity {
 		@Override
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
-			// Map<String, Object> params1;
-			String text = null;
-
+			String result;
+			String token_Id;
 			ArrayList<String> Department = getDepartmentData();
 			ArrayList<String> Campus = getCampusData();
-			// TODO: The tokenid is auto generated and needs to be fetched by
-			// the get call in
-			// the screen 2
-			// params1.put("tokenid", "ICET49");
-
-			/*
-			 * HttpClient httpClient = new DefaultHttpClient(); HttpContext
-			 * localContext = new BasicHttpContext(); String restTokenUrl =
-			 * "http://cctokens.azurewebsites.net/api/Tokens/createToken";
-			 * HttpPost httpPost = new HttpPost(restTokenUrl); try { // Iterator
-			 * iter = params1.entrySet().iterator(); JSONObject holder = new
-			 * JSONObject(); holder.put("Id", 0); // holder.put("tokenid", "");
-			 * holder.put("student_id", Campus.get(4)); holder.put("dept_Id",
-			 * Department.get(0)); holder.put("createdTime", "");
-			 * holder.put("closingTime", ""); holder.put("issue", getIssue());
-			 * holder.put("status", ""); holder.put("Advisor_Id", "");
-			 * holder.put("advisor_comments", "");
-			 * 
-			 * StringEntity se = new StringEntity(holder.toString());
-			 * httpPost.setEntity(se); httpPost.setHeader("Accept",
-			 * "application/json"); httpPost.setHeader("Content-type",
-			 * "application/json");
-			 * 
-			 * HttpResponse response = httpClient.execute(httpPost,
-			 * localContext); HttpEntity entity = response.getEntity(); text =
-			 * getASCIIContentFromEntity(entity);
-			 */
-
-			Map<String, String> params1;
-			// String text = null;
-
-			params1 = new HashMap<String, String>();
-			params1.put("Id", "3");
-			params1.put("tokenid", "ICET-03");
-			params1.put("student_id", Campus.get(4));
-			params1.put("dept_Id", Department.get(0));
-			params1.put("createdTime", "2015-11-12 12:30:00");
-			params1.put("closingTime", "2015-11-12 01:30:00");
-			params1.put("issue", getIssue());
-			params1.put("status", "InActive");
-			params1.put("Advisor_Id", "1");
-			params1.put("advisor_comments", "fixed");
-
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext localContext = new BasicHttpContext();
-			String restTokenUrl = "http://cctokens.azurewebsites.net/api/Tokens/createToken";
+			String restTokenUrl = "http://tokensys.azurewebsites.net/api/Tokens/createToken";
 			HttpPost httpPost = new HttpPost(restTokenUrl);
 			try {
-				Iterator iter = params1.entrySet().iterator();
 
-				JSONObject holder = new JSONObject();
-
-				while (iter.hasNext()) {
-					Map.Entry pairs = (Map.Entry) iter.next();
-					String key = (String) pairs.getKey();
-					String value = params1.get(key);
-
-					holder.put(key, value);
-				}
-
-				StringEntity se = new StringEntity(holder.toString());
-				httpPost.setEntity(se);
+				JSONObject json = new JSONObject();
+				json.put("student_id", Campus.get(4));
+				json.put("dept_Id", Department.get(0));
+				json.put("issue",  getIssue());
+				Log.d("JSON Object", json.toString());
+				HttpEntity e = new StringEntity(json.toString());
+				httpPost.setEntity(e);
 				httpPost.setHeader("Accept", "application/json");
 				httpPost.setHeader("Content-type", "application/json");
-
-				HttpResponse response = httpClient.execute(httpPost, localContext);
-				HttpEntity entity = response.getEntity();
-				text = getASCIIContentFromEntity(entity);
-
+				HttpResponse response = httpClient.execute(httpPost);				
+				result = EntityUtils.toString(response.getEntity());
+				JSONObject jObject = new JSONObject(result);
+				token_Id = jObject.getString("tokenid");
 			} catch (Exception e) {
 				return e.getLocalizedMessage();
 			}
-			return text;
+			return token_Id;
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(String token_Id) {
 			// TODO Auto-generated method stub
-			super.onPostExecute(result);
+			super.onPostExecute(token_Id);
 
-			if (result.equals("[]")) {
-				Toast.makeText(TokenInfo.this, "Not Inserted", Toast.LENGTH_SHORT).show();
+			if (token_Id!=null) {
+				Toast.makeText(TokenInfo.this, "Loading...", Toast.LENGTH_SHORT).show();
+							
+				Intent intent = new Intent(TokenInfo.this, CurrentToken.class);
+				intent.putStringArrayListExtra("DepartmentData",
+						new ArrayList<String>(getDepartmentData()));
+				intent.putExtra("TokenInfo", token_Id);
+				startActivity(intent);
 			} else {
-				Toast.makeText(TokenInfo.this, "Inserted", Toast.LENGTH_SHORT).show();
-				showCustomTokenDialog();
-
+				Toast.makeText(TokenInfo.this, "Unable to create token", Toast.LENGTH_SHORT).show();
 			}
 
 		}

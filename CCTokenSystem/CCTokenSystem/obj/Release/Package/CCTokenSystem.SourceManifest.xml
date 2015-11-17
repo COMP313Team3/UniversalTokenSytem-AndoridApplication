@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\Package\PackageTmp" />
+  <setAcl path="D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

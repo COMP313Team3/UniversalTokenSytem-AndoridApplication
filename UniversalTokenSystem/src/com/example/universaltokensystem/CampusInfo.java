@@ -103,7 +103,7 @@ public class CampusInfo extends Activity {
 			// TODO Auto-generated method stub
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext localContext = new BasicHttpContext();
-			String restStudentURL = "http://cctokens.azurewebsites.net/api/campuses/";
+			String restStudentURL = "http://tokensys.azurewebsites.net/api/campuses/";
 			HttpGet httpGet = new HttpGet(restStudentURL);
 			String text = null;
 			try {

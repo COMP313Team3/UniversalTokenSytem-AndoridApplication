@@ -127,25 +127,20 @@ namespace CCTokenSystem.Models
             {
                 new Token
                 {
-                    tokenid= "ICET01",
                     student_id=1,
                     dept_Id=1,
                     Advisor_Id=1,
                     createdTime =new DateTime(2015,11,12,12,30,00),
-                    closingTime=new DateTime(2015,11,12,1,30,00),
                     issue="unable to register a subject",
-                    status= "InActive"
+                    status= "Active"
                 },
                 new Token
                 {
-                    tokenid= "ICET02",
                     student_id=2,
                     dept_Id=1,
-                    Advisor_Id=1,
                     createdTime =new DateTime(2015,11,12,12,30,00),
-                    closingTime=new DateTime(2015,11,12,1,30,00),
                     issue="unable to pay fees online",
-                    status= "InActive"
+                    status= "Active"
                 }
             };
             foreach (var token in Tokens)

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CCTokenSystemContext-Web.config Connection String" description="CCTokenSystemContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=mycollege.database.windows.net;Initial Catalog=collegetoken;Integrated Security=False;User ID=srichatala;Password=********;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\CentennialCollege\\Sem-4\\COMP-313\\UniversalTokenSytem-AndoridApplication\\CCTokenSystem\\CCTokenSystem\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CCTokenSystemContext']/@connectionString" />
+  </parameter>
+</parameters>
