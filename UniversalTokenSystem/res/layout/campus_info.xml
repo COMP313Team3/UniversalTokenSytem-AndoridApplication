@@ -19,7 +19,7 @@
     <ListView
         android:id="@+id/CampusList"
         android:layout_width="wrap_content"
-        android:layout_height="245dp"
+        android:layout_height="295dp"
         android:layout_alignLeft="@+id/lblCampus"
         android:layout_alignRight="@+id/imageView1"
         android:layout_below="@+id/lblCampus" >
@@ -33,6 +33,7 @@
 	    android:layout_alignLeft="@+id/lblCampus"
 	    android:layout_alignParentBottom="true"
 	    android:layout_alignRight="@+id/imageView1"
+	    android:layout_alignTop="@+id/C"
 	    android:layout_marginBottom="49dp"
 	    android:background="#42454a" />
 
