@@ -20,6 +20,7 @@ app.controller("DeptCtrl", function ($scope, $http) {
     };
 
     $scope.DeptInfo = function () {
+        $scope.d_Name = "";
         $http.get("/api/Department/")
             .success($scope.renderDeptModels);
     }
@@ -32,7 +33,12 @@ app.controller("DeptCtrl", function ($scope, $http) {
         console.log(dept);
         $http.post("/api/Department/", dept)
             .success(function (response) {
-                $scope.DeptInfo();
+                if (response != "Not Found") {
+                    $scope.DeptInfo();
+                    $scope.d_Name = "";
+                } else {
+                    $scope.d_Name = "Campus Name already exists";
+                }
             })
     };
 

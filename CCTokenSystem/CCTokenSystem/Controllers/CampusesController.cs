@@ -65,23 +65,29 @@ namespace CCTokenSystem.Controllers
         [HttpPost]
         public HttpResponseMessage CreateCampus(Campus campus)
         {
-            dbcontext.Campuses.Add(campus);
-            try
+            var checkName = dbcontext.Campuses.Where(c_name => c_name.CampusName == campus.CampusName).Any();
+            if (!checkName)
             {
-                dbcontext.SaveChanges();
+                dbcontext.Campuses.Add(campus);
+                try
+                {
+                    dbcontext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                }
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, campus);
+
+                response.StatusCode = HttpStatusCode.Created;
+
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                return response;
             }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, campus);
-
-            response.StatusCode = HttpStatusCode.Created;
-
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            return response;
+            HttpResponseMessage res = Request.CreateResponse(HttpStatusCode.OK, "Not Found");
+            return res;
         }
 
         //Performing delete campus details by using CampusID

@@ -26,7 +26,7 @@ namespace CCTokenSystem.Controllers
         [HttpGet]
         public HttpResponseMessage GetAdvisorbyID(int Id)
         {
-            var advisor = dbcontext.Advisors.Where(adv => adv.Advisor_Id== Id).FirstOrDefault();
+            var advisor = dbcontext.Advisors.Where(adv => adv.Advisor_Id == Id).FirstOrDefault();
 
             if (advisor == null)
             {
@@ -45,7 +45,7 @@ namespace CCTokenSystem.Controllers
             return response;
         }
 
-       
+
         [HttpPut]
         public HttpResponseMessage UpdateAdvisor(Advisor advisor)
         {
@@ -74,34 +74,28 @@ namespace CCTokenSystem.Controllers
         [HttpPost]
         public HttpResponseMessage CreateAdvisor(Advisor advisor)
         {
-            if (advisor != null)
+            var checkEmail = dbcontext.Advisors.Where(a_name => a_name.Email == advisor.Email).Any();
+            if (!checkEmail)
             {
-                if (dbcontext.Advisors.Find(advisor.Advisor_Id) == null)
+                dbcontext.Advisors.Add(advisor);
+                try
                 {
-                    dbcontext.Advisors.Add(advisor);
+                    dbcontext.SaveChanges();
                 }
-                else
+                catch (Exception ex)
                 {
-                    HttpResponseMessage errresponse = Request.CreateResponse(HttpStatusCode.Conflict);
-                    return errresponse;
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
                 }
-            }
-            try
-            {
-                dbcontext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
 
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            return response;
+                return response;
+            }
+            HttpResponseMessage res = Request.CreateResponse(HttpStatusCode.NotFound, "Not Found");
+            return res;
         }
-
         [HttpDelete]
         public HttpResponseMessage DeleteAdvisor(int AdvisorID)
         {

@@ -75,23 +75,30 @@ namespace CCTokenSystem.Controllers
         [HttpPost]
         public HttpResponseMessage CreateStudent(Student student)
         {
-            dbcontext.Students.Add(student);
-            try
-            {
-                dbcontext.SaveChanges();
+            var checkid = dbcontext.Students.Where(st_id => st_id.StudentID == student.StudentID).Any();
+            if (!checkid) {
+                dbcontext.Students.Add(student);
+                try
+                {
+                    dbcontext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                }
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, student);
+
+                response.StatusCode = HttpStatusCode.Created;
+
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                return response;
             }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
+            
+            HttpResponseMessage res = Request.CreateResponse(HttpStatusCode.OK, "Not Found");
+            return res;
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, student);
-
-            response.StatusCode = HttpStatusCode.Created;
-
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            return response;
         }
 
         [HttpDelete]

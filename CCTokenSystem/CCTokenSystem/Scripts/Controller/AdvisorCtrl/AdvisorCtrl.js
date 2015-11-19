@@ -23,10 +23,8 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
     }
     $scope.CampusInfo();
     $scope.select = function (campus_Id) {
-        console.log(campus_Id);
         $http.get("/api/Department?CampusId=" + campus_Id)
            .success(function (response) {
-               console.log(response);
                 $scope.DeptData = response;
            });
             
@@ -50,13 +48,19 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
     $scope.Create = function (advisor) {
         $http.post("/api/Advisor/", advisor)
             .success(function (response) {
-                $scope.AdviosrInfo();
+                if (response != "Not Found") {
+                    $scope.AdviosrInfo();
+                    $scope.a_Name = "";
+                } else {
+                    $scope.a_Name = "Email already exists";
+                }
             })
     };
 
     $scope.Remove = function (Advisor_Id) {
         $http.delete("/api/Advisor/" + Advisor_Id)
             .success(function (response) {
+                $scope.a_Name = "";
                 $scope.DeptInfo();
             });
     };
@@ -64,6 +68,7 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
     $scope.Select = function (Advisor_Id) {
         $http.get("/api/Advisor/" + Advisor_Id)
             .success(function (response) {
+                $scope.a_Name = "";
                 $scope.addSt = false;
                 $scope.updateSt = true;
                 $scope.clearSt = true;
@@ -71,7 +76,6 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
 
                 $http.get("/api/Department?CampusId=" + $scope.advisor.campusid)
                  .success(function (response) {
-                     console.log(response);
                      $scope.DeptData = response;
               });
 
@@ -82,6 +86,7 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
     $scope.Update = function (advisor) {
         $http.put("/api/Advisor/" + advisor.Advisor_Id, advisor)
             .success(function (response) {
+                $scope.a_Name = "";
                 $scope.addSt = false;
                 $scope.updateSt = true;
                 $scope.DeptInfo();
@@ -91,6 +96,7 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
     };
 
     $scope.Clear = function () {
+        $scope.a_Name = "";
         $scope.addSt = true;
         $scope.updateSt = false;
         $scope.clearSt = false;
