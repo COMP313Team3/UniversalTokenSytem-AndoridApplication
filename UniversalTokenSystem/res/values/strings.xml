@@ -4,12 +4,18 @@
     <string name="app_name">Universal Token System</string>
     <string name="action_settings">Settings</string>
     <string name="logo">Logo</string>
-    <string name="studentid">Student ID</string>
+    <string name="studentid">Student ID:\t</string>
     <string name="submitstudentnum">\t Let\'s get started ➜ \t  </string>
     <string name="copyright">Copyright@2015 UTS_CentennialCollege</string>
-   <color name="backgroundcolor">#D4DF38</color>
-   <string name="issue">Issue</string>
-   <string name="generate">\t Generate Token \t</string>
-   <string name="department">Department Name</string>
-   <string name="room">Room #</string>
+
+    <color name="backgroundcolor">#D4DF38</color>
+
+    <string name="issue">Issue about:</string>
+    <string name="generate">\t Generate Token \t</string>
+    <string name="department">Dept Name:\t</string>
+    <string name="room">Room #:\t</string>
+     <string name="tokenid">Token ID:\t</string>
+    <string name="title_activity_current_token">CurrentToken</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

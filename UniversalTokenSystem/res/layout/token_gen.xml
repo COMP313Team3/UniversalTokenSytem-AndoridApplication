@@ -5,17 +5,6 @@
     android:background="@color/backgroundcolor"
     android:orientation="vertical" >
 
-    
-    <TextView
-        android:id="@+id/TextView01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:text="@string/copyright"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
     <TextView
         android:id="@+id/txtTokenName"
         android:layout_width="wrap_content"
@@ -25,16 +14,6 @@
         android:layout_marginTop="25dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="7dp"
-        android:layout_alignLeft="@+id/txtTokenName"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_below="@+id/btnLogin"
-        android:layout_marginTop="96dp"
-        android:background="#42454a" />
-
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
@@ -43,5 +22,25 @@
         android:background="#42454a"
         android:text="OK"
         android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:text="@string/copyright"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_above="@+id/TextView01"
+        android:layout_alignLeft="@+id/TextView01"
+        android:layout_alignRight="@+id/TextView01"
+        android:layout_marginBottom="18dp"
+        android:background="#42454a" />
 
 </RelativeLayout>
