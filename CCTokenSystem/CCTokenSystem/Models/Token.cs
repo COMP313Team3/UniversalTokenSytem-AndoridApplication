@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,7 @@ namespace CCTokenSystem.Models
         public string status { get; set; }
         public int Advisor_Id { get; set; }
         public string advisor_comments { get; set; }
+        public int approximateWaitTimeinMins { get; set; }
 
 
         [ForeignKey("student_id")]
