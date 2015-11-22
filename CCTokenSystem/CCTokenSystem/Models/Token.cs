@@ -22,6 +22,7 @@ namespace CCTokenSystem.Models
         public string status { get; set; }
         public int Advisor_Id { get; set; }
         public string advisor_comments { get; set; }
+        [NotMapped]
         public int approximateWaitTimeinMins { get; set; }
 
 

@@ -1,92 +1,75 @@
 ﻿<script src="~/Scripts/Controller/TokenCtrl/TokenCtrl.js"></script>
-<div ng-controller="AdvisorCtrl">
+<div ng-controller="TokenCtrl">
     <form class="form-horizontal" name="myForm" novalidate>
-        <h3>Token Details</h3>
-        <div class="form-group">
-            <label for="studentid" class="col-sm-5 control-label">Student ID:</label>
-            <div class="col-sm-7">
-                <p>{{token.student_id}}</p>
-                @*<input type="text" name="studentid" class="form-control" ng-model="token.student_id" placeholder="Student ID" ng-minlength="9" ng-maxlength="9" ng-pattern="/^[0-9]+$/" required>
-                <span style="color:red" ng-show="myForm.studentid.$dirty && myForm.studentid.$invalid">
-                    <span ng-show="myForm.studentid.$error.required">Student ID is required</span>
-                    <span ng-show="myForm.studentid.$error.minlength || myForm.studentid.$error.maxlength || myForm.studentid.$error.pattern">Invalid Student Id (Only numbers)</span>
-                </span>*@
+        <div ng-show="tokenView">
+            <h3>Individual Token Details</h3>
+            <div class="form-group">
+                <label for="lastname" class="col-sm-5 control-label">Token ID #:</label>
+                <div class="col-sm-7">
+                    <input type="text" readonly name="lname" class="form-control" ng-model="token.tokenid">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-sm-5 control-label">Token ID #:</label>
-            <div class="col-sm-7">
-                <label>{{token.tokenid}}</label>
-                @*<input type="text" name="lname" class="form-control" ng-model="token.issue" placeholder="Last Name" ng-pattern="/^[a-zA-Z ]*$/" required>
-                <span style="color:red" ng-show="myForm.lname.$dirty && myForm.lname.$invalid">
-                    <span ng-show="myForm.lname.$error.required">Last name is required</span>
-                    <span ng-show="myForm.lname.$error.pattern">Invalid Last Name</span>
-                </span>*@
+            <div class="form-group">
+                <label class="col-sm-5 control-label">Student ID:</label>
+                <div class="col-sm-7">
+                    <input type="text" readonly name="lname" class="form-control" ng-model="token.student.StudentID">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-sm-5 control-label">Issue:</label>
-            <div class="col-sm-7">
-                <p>{{token.issue}}</p>
-                @*<input type="text" name="lname" class="form-control" ng-model="token.issue" placeholder="Last Name" ng-pattern="/^[a-zA-Z ]*$/" required>
-                <span style="color:red" ng-show="myForm.lname.$dirty && myForm.lname.$invalid">
-                    <span ng-show="myForm.lname.$error.required">Last name is required</span>
-                    <span ng-show="myForm.lname.$error.pattern">Invalid Last Name</span>
-                </span>*@
+            <div class="form-group">
+                <label for="lastname" class="col-sm-5 control-label">Issue:</label>
+                <div class="col-sm-7">
+                    <textarea class="form-control" readonly rows="3" ng-model="token.issue"></textarea>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="phonenumber" class="col-sm-5 control-label">Comments:</label>
-            <div class="col-sm-7">
-                <textarea  class="form-control" rows="5" ng-model="token.comments" >
-                </textarea>
+            <div class="form-group">
+                <label for="phonenumber" class="col-sm-5 control-label">Comments:</label>
+                <div class="col-sm-7">
+                    <textarea class="form-control" rows="5" ng-model="token.advisor_comments"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-7">
+                    <input type="submit" ng-click="Close(token)" class="btn btn-danger" value="Close Token" />
+                    <input type="submit" ng-click="Cancel()" class="btn btn-default" value="Back to List" />
+                </div>
             </div>
         </div>
-      
-
-        <div class="form-group">
-            <div class="col-sm-offset-5 col-sm-7">
-                <input type="submit" ng-show="addSt" ng-click="Update(token)" class="btn btn-success" value="Submit" />
+        <div ng-show="tokenInfo">
+            <div class="col-lg-12">
+                <h3>Token Details</h3>
+                <div class="form-group">
+                    <div class="col-lg-2">
+                        <label>Search by Token #:</label>
+                    </div>
+                    <div class="col-lg-8">
+                        <input type="text" name="lname" ng-model="search" class="form-control" placeholder="Enter valid token number">
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Token Number</th>
+                        <th>Student ID</th>
+                        <th>Dept Name</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr ng-repeat="token in TokenData | filter:search">
+                        <td>
+                            {{token.tokenid}}
+                        </td>
+                        <td>
+                            {{token.student.StudentID}}
+                        </td>
+                        <td>
+                            {{token.department.dept_name}}
+                        </td>
+                        <td>
+                            <button class="btn btn-success" ng-click="Select(token.tokenid)">Open Token details</button>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="col-lg-12">
-            <h3>Advisor Details</h3>
-            <table class="table table-striped">
-                <tr>
-                    <th>Advisor ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                    @*<th>Department</th>*@
-                    <th>Actions</th>
-                </tr>
-                <tr ng-repeat="advisor in AdvisorData">
-                    <td>
-                        {{advisor.Advisor_Id}}
-                    </td>
-                    <td>
-                        {{advisor.Firstname}}
-                    </td>
-                    <td>
-                        {{advisor.Lastname}}
-                    </td>
-                    <td>
-                        {{advisor.Phoneno}}
-                    </td>
-                    <td>
-                        {{advisor.Email}}
-                    </td>
-                    @*<td>
-                            {{advisor.dept_Id}}
-                        </td>*@
-                    <td>
-                        <button class="btn btn-warning" ng-click="Select(advisor.Advisor_Id)"><span class="glyphicon glyphicon-pencil"></span></button>
-                        <button class="btn btn-danger" ng-click="Remove(advisor.Advisor_Id)"><span class="glyphicon glyphicon-remove"></span></button>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        
     </form>
 </div>
