@@ -127,6 +127,7 @@ namespace CCTokenSystem.Models
             {
                 new Token
                 {
+                    tokenid="ICET-01",
                     student_id=1,
                     dept_Id=1,
                     createdTime =new DateTime(2015,11,12,12,30,00),
@@ -135,6 +136,7 @@ namespace CCTokenSystem.Models
                 },
                 new Token
                 {
+                    tokenid="ICET-02",
                     student_id=2,
                     dept_Id=1,
                     createdTime =new DateTime(2015,11,12,12,30,00),

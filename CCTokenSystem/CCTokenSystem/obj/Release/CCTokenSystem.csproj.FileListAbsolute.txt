@@ -17,3 +17,4 @@ D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTok
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\bin\Antlr3.Runtime.pdb
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\CCTokenSystem.dll
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\CCTokenSystem.pdb
+D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem\obj\Release\CCTokenSystem.csprojResolveAssemblyReference.cache

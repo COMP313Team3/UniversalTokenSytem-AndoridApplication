@@ -41,47 +41,76 @@ namespace CCTokenSystem.Controllers
             return response;
         }
 
-        [HttpPost]
-        public HttpResponseMessage CloseToken(int tokenId, Token NewToken)
+        [HttpPut]
+        public HttpResponseMessage CloseToken(Token NewToken)
         {
-            var tokentoupdate = dbcontext.Tokens.Where(tok => tok.tokenid == NewToken.tokenid);
-
-            Token token;
-
-            if (tokentoupdate != null)
+            NewToken.department = null;
+            NewToken.student = null;
+            if (NewToken != null)
             {
-                token = (Token)tokentoupdate;
-
-                token.status = "InActive";
-                token.Advisor_Id = NewToken.Advisor_Id;
-
-                dbcontext.Entry(tokentoupdate).State = EntityState.Modified;
-
-                try
-                {
-                    dbcontext.SaveChanges();
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, token);
-                    response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    return response;
-                }
-                catch
-                {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotModified, "Failed to update");
-                }
-
+                NewToken.closingTime = DateTime.Now;
+                NewToken.status = "InActive";
+                NewToken.Advisor_Id = 1;
+                dbcontext.Entry(NewToken).State = EntityState.Modified;
             }
-            else
+
+            try
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No Tokens found for the id passed");
+                dbcontext.SaveChanges();
             }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, NewToken);
+
+            response.StatusCode = HttpStatusCode.Created;
+
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            return response;
+            //NewToken.department = null;
+            //NewToken.student = null;
+            //var tokentoupdate = dbcontext.Tokens.Where(tok => tok.tokenid == NewToken.tokenid);
+
+            //Token token;
+
+            //if (tokentoupdate != null)
+            //{
+            //    token = (Token)tokentoupdate;
+
+            //    NewToken.closingTime = DateTime.Now;
+            //    token.status = "InActive";
+            //    token.Advisor_Id = 1;
+
+            //    dbcontext.Entry(tokentoupdate).State = EntityState.Modified;
+
+            //    try
+            //    {
+            //        dbcontext.SaveChanges();
+            //        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, token);
+            //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            //        return response;
+            //    }
+            //    catch
+            //    {
+            //        return Request.CreateErrorResponse(HttpStatusCode.NotModified, "Failed to update");
+            //    }
+
+            //}
+            //else
+            //{
+            //    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No Tokens found for the id passed");
+            //}
 
         }
 
-        [HttpGet]
-        public HttpResponseMessage RetrieveTokensByDept([FromUri]int deptID)
-        {
 
-            List<Token> tokens = dbcontext.Tokens.Where(tok => tok.dept_Id == deptID).ToList<Token>();
+
+        [HttpGet]
+        public HttpResponseMessage RetrieveTokensByDept([FromUri]int dID)
+        {
+            List<Token> tokens = dbcontext.Tokens.Where(tok => tok.dept_Id == dID &&  tok.status=="Active").ToList<Token>();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, tokens);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;

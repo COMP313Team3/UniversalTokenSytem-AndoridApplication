@@ -63,17 +63,25 @@
             </div>
         </div>
         <div class="form-group">
+            <div class="col-sm-5">
+
+            </div>
+            <div style="color:red" class="col-sm-7">
+                {{st_id}}
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-5 col-sm-7">
-                <input type="submit" ng-show="addSt" ng-click="Create(student)" ng-disabled="myForm.studentid.$pristine || myForm.studentid.$dirty && myForm.studentid.$invalid || 
+                <input type="submit" ng-show="addSt" ng-click="Create(student)" ng-disabled="myForm.studentid.$pristine || myForm.studentid.$dirty && myForm.studentid.$invalid ||
                        myForm.fname.$pristine || myForm.fname.$dirty && myForm.fname.$invalid ||
                        myForm.lname.$pristine || myForm.lname.$dirty && myForm.lname.$invalid ||
-                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid || 
+                       myForm.pnumber.$pristine || myForm.pnumber.$dirty && myForm.pnumber.$invalid ||
                        myForm.course.$pristine || myForm.course.$dirty && myForm.course.$invalid ||
                        myForm.input.$pristine || myForm.input.$dirty && myForm.input.$invalid" class="btn btn-success" value="Submit" />
-                <input type="submit" ng-show="updateSt" ng-click="Update(student)" ng-disabled="myForm.studentid.$dirty && myForm.studentid.$invalid || 
+                <input type="submit" ng-show="updateSt" ng-click="Update(student)" ng-disabled="myForm.studentid.$dirty && myForm.studentid.$invalid ||
                        myForm.fname.$dirty && myForm.fname.$invalid ||
                        myForm.lname.$dirty && myForm.lname.$invalid ||
-                       myForm.pnumber.$dirty && myForm.pnumber.$invalid || 
+                       myForm.pnumber.$dirty && myForm.pnumber.$invalid ||
                        myForm.course.$dirty && myForm.course.$invalid ||
                        myForm.input.$dirty && myForm.input.$invalid" class="btn btn-warning" value="Update" />
                 <input type="submit" ng-show="clearSt" ng-click="Clear()" class="btn btn-default" value="Create New" />
