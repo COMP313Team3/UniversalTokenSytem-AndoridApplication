@@ -1,14 +1,39 @@
-﻿var app = angular.module("myWebAPI", [])
+﻿var app = angular.module('myWebAPI', ['ui.bootstrap']);
 
-app.controller("TokenCtrl", function ($scope, $http) {
+app.filter('startFrom', function () {
+    return function (input, start) {
+        if (input) {
+            start = +start;
+            return input.slice(start);
+        }
+        return [];
+    };
+});
+
+app.controller("TokenCtrl", ['$scope','$http','filterFilter', function ($scope, $http,filterFilter) {
+
     $scope.renderTokenModels = function (response) {
         $scope.tokenView = false;
         $scope.tokenInfo = true;
         $scope.TokenData = response;
+
+        $scope.currentPage = 1;
+        $scope.totalItems = $scope.TokenData.length;
+        console.log($scope.totalItems);
+        $scope.entryLimit = 5; // items per page
+        $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
+
+        // $watch search to update pagination
+        $scope.$watch('search', function (newVal, oldVal) {
+            $scope.filtered = filterFilter($scope.TokenData, newVal);
+            $scope.totalItems = $scope.filtered.length;
+            $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
+            $scope.currentPage = 1;
+        }, true);
     };
 
     $scope.TokenInfo = function () {
-        $http.get("/api/tokens/RetrieveTokensByDept?dID="+1)
+        $http.get("/api/tokens/RetrieveTokensByDept?dID=" + 1)
             .success($scope.renderTokenModels);
     }
 
@@ -35,5 +60,6 @@ app.controller("TokenCtrl", function ($scope, $http) {
         $scope.tokenView = false;
         $scope.tokenInfo = true;
     };
-});
+   
+}]);
 
