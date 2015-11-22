@@ -30,35 +30,46 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-7">
-                    <input type="submit" ng-click="Close(token)" class="btn btn-danger" value="Close" />
+                    <input type="submit" ng-click="Close(token)" class="btn btn-danger" value="Close Token" />
+                    <input type="submit" ng-click="Cancel()" class="btn btn-default" value="Back to List" />
                 </div>
             </div>
-
         </div>
-        <div class="col-lg-12">
-            <h3>Token Details</h3>
-            <table class="table table-striped">
-                <tr>
-                    <th>Token ID</th>
-                    <th>Student ID</th>
-                    <th>Dept Name</th>
-                    <th>Actions</th>
-                </tr>
-                <tr ng-repeat="token in TokenData">
-                    <td>
-                        {{token.tokenid}}
-                    </td>
-                    <td>
-                        {{token.student.StudentID}}
-                    </td>
-                    <td>
-                        {{token.department.dept_name}}
-                    </td>
-                    <td>
-                        <button class="btn btn-success" ng-click="Select(token.tokenid)">Token details</button>
-                    </td>
-                </tr>
-            </table>
+        <div ng-show="tokenInfo">
+            <div class="col-lg-12">
+                <h3>Token Details</h3>
+                <div class="form-group">
+                    <div class="col-lg-2">
+                        <label>Search by Token #:</label>
+                    </div>
+                    <div class="col-lg-8">
+                        <input type="text" name="lname" ng-model="search" class="form-control" placeholder="Enter valid token number">
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Token Number</th>
+                        <th>Student ID</th>
+                        <th>Dept Name</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr ng-repeat="token in TokenData | filter:search">
+                        <td>
+                            {{token.tokenid}}
+                        </td>
+                        <td>
+                            {{token.student.StudentID}}
+                        </td>
+                        <td>
+                            {{token.department.dept_name}}
+                        </td>
+                        <td>
+                            <button class="btn btn-success" ng-click="Select(token.tokenid)">Open Token details</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
+        
     </form>
 </div>

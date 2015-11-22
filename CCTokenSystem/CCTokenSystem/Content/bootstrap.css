@@ -4662,6 +4662,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   text-decoration: none;
   background-color: #ffffff;
   border: 1px solid #dddddd;
+  cursor:pointer;
 }
 
 .pagination > li:first-child > a,
