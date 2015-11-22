@@ -7,12 +7,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -27,10 +29,16 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -184,6 +192,12 @@ public class TokenInfo extends Activity {
 					String st_id;
 					token_Id = jObject.getString("tokenid");
 					st_id = jObject.getString("student_id");
+					
+					Intent TokenNotificationintent = new Intent(TokenInfo.this, TokenNotificationService.class);
+					TokenNotificationintent.putExtra("tokenId", token_Id);
+					TokenNotificationintent.putExtra("studentId", st_id);
+					startService(TokenNotificationintent);
+						
 					Intent intent = new Intent(TokenInfo.this, CurrentToken.class);
 					intent.putStringArrayListExtra("DepartmentData",
 							new ArrayList<String>(getDepartmentData()));
@@ -223,4 +237,151 @@ public class TokenInfo extends Activity {
 		}
 	}
 
+	public class TokenNotificationService extends Service {
+		
+		  String tokenId;
+		  Integer studentId; 
+		
+		  String tokenStatus="";
+		  Integer tokenWaitTime;
+		  boolean FirstNotification;
+		  boolean FinalNotification;
+		
+		   @Override
+		   public IBinder onBind(Intent arg0) {
+		      return null;
+		   }
+		   
+		   @Override
+		   public void onCreate() {
+			   super.onCreate();
+			   
+		   };
+		   
+		   @Override
+		   public int onStartCommand(Intent intent, int flags, int startId) {
+			  
+			   tokenId = getIntent().getExtras().getString("tokenId").toString();
+			   studentId = Integer.parseInt(getIntent().getExtras().getString("studentId").toString());
+			  
+			  try{
+				   while(isTokenActive())
+				   {
+					   if((tokenWaitTime >10 && !FirstNotification))
+					   {
+						   NotificationManager nm= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+						   PendingIntent p=PendingIntent.getActivity(this, 0,new Intent(this,TokenNotificationActivity.class), 0);
+						   NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
+						   builder.setContentTitle("Centennial Token Application");
+						   builder.setContentText("Your token wait time");
+						   
+						   Notification n= builder.build();
+						   n.vibrate=new long[]{150,300,150,600};
+						   n.flags=Notification.FLAG_AUTO_CANCEL;
+						   nm.notify(R.drawable.ic_launcher,n);
+						   
+						   FirstNotification= true; 
+					   }
+					   if(tokenWaitTime <=10 && !FinalNotification)
+					   {
+						   NotificationManager nm= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+						   PendingIntent p=PendingIntent.getActivity(this, 0,new Intent(this,TokenNotificationActivity.class), 0);
+						   NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
+						   builder.setContentTitle("Centennial Token Application");
+						   builder.setContentText("Your token wait time");
+						   
+						   Notification n= builder.build();
+						   n.vibrate=new long[]{150,300,150,600};
+						   n.flags=Notification.FLAG_AUTO_CANCEL;
+						   nm.notify(R.drawable.ic_launcher,n);
+						   
+						   FinalNotification= true; 
+					   }
+					   Thread.sleep(300000); //5 mins
+				   }				   
+				   if(tokenStatus == "InActive")
+				   {
+					   stopSelf();
+				   }
+			   }
+			   catch(Exception Ex)
+			   {
+				   
+			   }
+		       return START_STICKY;
+		   }
+		   
+		   private boolean isTokenActive() {			
+				GetTokenInfo(); 		   
+				return tokenStatus == "Active";
+		}
+
+		private void GetTokenInfo() {
+			
+			try {
+				String TokenInfo = new TokenInfoService().execute(tokenId).get();
+				JSONArray stList = new JSONArray(TokenInfo);
+				if(stList.length() == 1)
+				{
+				  JSONObject json_data = stList.getJSONObject(0);
+				  tokenWaitTime = json_data.getInt("approximateWaitTimeinMins");
+				  tokenStatus= json_data.getString("status");
+				}
+			} 
+		    catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		   public void onDestroy() {
+		      super.onDestroy();
+		   }
+		}
+	
+	public class TokenInfoService extends AsyncTask<String, Void, String> {
+		protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
+			InputStream in = entity.getContent();
+			StringBuffer out = new StringBuffer();
+			int n = 1;
+			while (n > 0) {
+				byte[] b = new byte[4096];
+				n = in.read(b);
+				if (n > 0)
+					out.append(new String(b, 0, n));
+			}
+			return out.toString();
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			String tokenID = params[0];
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpContext localContext = new BasicHttpContext();
+			String restTokenURL = "http://tokensys.azurewebsites.net/api/Tokens/RetrieveTokenById?token_Id=" + tokenID;
+			HttpGet httpGet = new HttpGet(restTokenURL);
+			String text = null;
+			try {
+				HttpResponse response = httpClient.execute(httpGet, localContext);
+				HttpEntity entity = response.getEntity();
+				text = getASCIIContentFromEntity(entity);
+			} catch (Exception e) {
+				return e.getLocalizedMessage();
+			}
+			return text;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {		
+			super.onPostExecute(result);
+		}
+	}
+
+	
+	
 }

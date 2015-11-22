@@ -14,8 +14,9 @@
     <string name="generate">\t Generate Token \t</string>
     <string name="department">Dept Name:\t</string>
     <string name="room">Room #:\t</string>
-     <string name="tokenid">Token ID:\t</string>
+    <string name="tokenid">Token ID:\t</string>
     <string name="title_activity_current_token">CurrentToken</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_token_notification">TokenNotificationActivity</string>
 
 </resources>
