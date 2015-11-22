@@ -15,6 +15,8 @@ namespace CCTokenSystem.Controllers
 {
     public class TokensController : ApiController
     {
+        int stdTokenClosingTime = 10; // mins, this value is approximate , Time taken by advisor to close each ticket
+
         CCTokenSystemContext dbcontext = new CCTokenSystemContext();
 
         [HttpPost]
@@ -103,19 +105,32 @@ namespace CCTokenSystem.Controllers
             return response;
         }
 
+        [HttpGet]
+        public HttpResponseMessage RetrieveTokenById([FromUri]string token_Id)
+        {
+            Token token = getTokenbyId(token_Id);
+
+            if (token != null)
+            {
+                token.approximateWaitTimeinMins = getTokenWaitTime(token_Id);
+            }
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, token);
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            return response;
+        }
 
         [HttpGet]
         public string GenearateTokenID(int departmentID)
         {
-            string tokenid="";
+            string tokenid = "";
             DateTime dt = DateTime.Now.Date;
             var lastTokenGenerated = dbcontext.Tokens.Where(tok => tok.dept_Id == departmentID && DbFunctions.TruncateTime(tok.createdTime).Value == dt).OrderBy(tok => tok.createdTime);
             Department department = dbcontext.Departments.Where(dept => dept.dept_Id == departmentID).FirstOrDefault<Department>();
 
-            if (lastTokenGenerated.Count() != 0 )
+            if (lastTokenGenerated.Count() != 0)
             {
                 tokenid = lastTokenGenerated.FirstOrDefault<Token>().tokenid;
-                tokenid = department.dept_name + "-" + (int.Parse(tokenid.Substring(tokenid.IndexOf("-") + 1)) +1).ToString().PadLeft(2, '0');  
+                tokenid = department.dept_name + "-" + (int.Parse(tokenid.Substring(tokenid.IndexOf("-") + 1)) + 1).ToString().PadLeft(2, '0');
             }
             else
             {
@@ -134,6 +149,17 @@ namespace CCTokenSystem.Controllers
         {
             Token token = dbcontext.Tokens.Where(tok => tok.tokenid == tokenId).FirstOrDefault<Token>();
             return token;
+        }
+
+        private int getTokenWaitTime(string tokenId)
+        {
+
+            Token studentToken = getTokenbyId(tokenId);
+
+            List<Token> waitingTokens = dbcontext.Tokens.Where(tok => tok.status == "Active" && tok.dept_Id == studentToken.dept_Id && tok.createdTime < studentToken.createdTime).ToList<Token>();
+
+            return stdTokenClosingTime * waitingTokens.Count;
+
         }
     }
 }
