@@ -118,5 +118,19 @@ namespace CCTokenSystem.Controllers
 
             return Request.CreateResponse(new HttpResponseMessage(HttpStatusCode.OK));
         }
+        [HttpGet]
+        public HttpResponseMessage GetAdvisor([FromUri] string email, string password)
+        {
+            if (email == null && password==null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            List<Advisor> advisorInfo = dbcontext.Advisors.Where(a => a.Email == email && a.Password == password).ToList();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisorInfo);
+
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            return response;
+        }
     }
 }
