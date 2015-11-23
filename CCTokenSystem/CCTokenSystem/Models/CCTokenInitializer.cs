@@ -104,7 +104,8 @@ namespace CCTokenSystem.Models
                     Lastname="sashthri",
                     Email="Sara@centennial.com",
                     Phoneno="416-567-4587",
-                    dept_Id=1
+                    dept_Id=1,
+                    Password="password"
                 },
                 new Advisor
                 {
@@ -112,7 +113,8 @@ namespace CCTokenSystem.Models
                     Lastname="Advisor1",
                     Email="Advisor1@centennial.com",
                     Phoneno="416-567-4517",
-                    dept_Id=2
+                    dept_Id=2,
+                    Password="password"
                 }
             };
             foreach (var advisor in Advisors)
