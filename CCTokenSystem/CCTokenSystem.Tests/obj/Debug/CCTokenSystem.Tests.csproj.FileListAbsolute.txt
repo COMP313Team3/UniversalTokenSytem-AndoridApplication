@@ -137,3 +137,4 @@ D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\
 D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\Debug\CCTokenSystem.Tests.csprojResolveAssemblyReference.cache
 D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\Debug\CCTokenSystem.Tests.dll
 D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\Debug\CCTokenSystem.Tests.pdb
+E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
