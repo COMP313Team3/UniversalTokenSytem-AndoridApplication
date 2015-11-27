@@ -10,19 +10,21 @@ app.filter('startFrom', function () {
     };
 });
 
-app.controller("TokenCtrl", ['$scope','$http','filterFilter', function ($scope, $http,filterFilter) {
+app.controller("TokenCtrl", ['$scope', '$http', 'filterFilter', function ($scope, $http, filterFilter) {
     $scope.tokenView = false;
     $scope.tokenInfo = false;
+    $scope.out = false;
     $scope.log = true;
     $scope.login = function (advisor) {
-        console.log(advisor);
-        $http.get('/api/Advisor/GetAdvisor?email='+ advisor.email+'&password='+ advisor.password)
+        $http.get('/api/Advisor/GetAdvisor?email=' + advisor.email + '&password=' + advisor.password)
         .then(function (res) {
             if (res != "Not Found") {
+                $scope.message = res.data[0];
                 var dID = res.data[0].dept_Id;
                 $scope.renderTokenModels = function (response) {
                     $scope.tokenView = false;
                     $scope.tokenInfo = true;
+                    $scope.out = true;
                     $scope.log = false;
                     $scope.TokenData = response;
 
@@ -67,6 +69,14 @@ app.controller("TokenCtrl", ['$scope','$http','filterFilter', function ($scope, 
                     $scope.tokenView = false;
                     $scope.tokenInfo = true;
                 };
+                $scope.Signout = function () {
+                    $scope.tokenView = false;
+                    $scope.tokenInfo = false;
+                    $scope.out = false;
+                    $scope.log = true;
+                }
+            } else {
+                $scope.message = "Invalid login credentials";
             }
         });
     };
