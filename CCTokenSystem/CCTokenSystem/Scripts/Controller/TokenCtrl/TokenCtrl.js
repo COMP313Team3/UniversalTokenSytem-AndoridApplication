@@ -19,7 +19,9 @@ app.controller("TokenCtrl", ['$scope', '$http', 'filterFilter', function ($scope
         $http.get('/api/Advisor/GetAdvisor?email=' + advisor.email + '&password=' + advisor.password)
         .then(function (res) {
             if (res != "Not Found") {
-                $scope.message = res.data[0];
+                $scope.advisor = res.data[0];
+                var ad_Id = res.data[0].Advisor_Id;
+                //$scope.Advisor_Id = ad_Id;
                 var dID = res.data[0].dept_Id;
                 $scope.renderTokenModels = function (response) {
                     $scope.tokenView = false;
@@ -58,12 +60,16 @@ app.controller("TokenCtrl", ['$scope', '$http', 'filterFilter', function ($scope
                 };
 
                 $scope.Close = function (token) {
-                    $http.put("/api/tokens/", token)
-                        .success(function (response) {
-                            $scope.tokenView = false;
-                            $scope.tokenView = true;
-                            $scope.TokenInfo();
-                        });
+                    if (token.Advisor_Id == 0) {
+                        token.Advisor_Id = ad_Id;
+                        $http.put("/api/tokens/", token)
+                       .success(function (response) {
+                           $scope.tokenView = false;
+                           $scope.tokenView = true;
+                           $scope.TokenInfo();
+                       });
+                    }
+                    
                 };
                 $scope.Cancel = function () {
                     $scope.tokenView = false;
