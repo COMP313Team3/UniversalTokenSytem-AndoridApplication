@@ -50,7 +50,6 @@ namespace CCTokenSystem.Controllers
             {
                 NewToken.closingTime = DateTime.Now;
                 NewToken.status = "InActive";
-                NewToken.Advisor_Id = 1;
                 dbcontext.Entry(NewToken).State = EntityState.Modified;
             }
 
