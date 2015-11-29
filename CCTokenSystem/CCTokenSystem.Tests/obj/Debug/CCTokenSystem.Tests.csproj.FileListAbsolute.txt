@@ -25,12 +25,10 @@ D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTok
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\System.Web.WebPages.xml
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\System.Web.WebPages.Razor.xml
-D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\System.Web.Optimization.xml
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\Debug\CCTokenSystem.Tests.csprojResolveAssemblyReference.cache
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\Debug\CCTokenSystem.Tests.dll
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\Debug\CCTokenSystem.Tests.pdb
 D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\EntityFramework.dll
-D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\EntityFramework.xml
 D:\PROJECT2\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\CCTokenSystem.Tests.dll.config
 D:\PROJECT2\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\CCTokenSystem.Tests.dll
 D:\PROJECT2\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\CCTokenSystem.Tests.pdb
@@ -138,3 +136,5 @@ D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\
 D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\Debug\CCTokenSystem.Tests.dll
 D:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\obj\Debug\CCTokenSystem.Tests.pdb
 E:\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\System.Web.Optimization.xml
+D:\CentennialCollege\Sem-4\COMP-313\UniversalTokenSytem-AndoridApplication\CCTokenSystem\CCTokenSystem.Tests\bin\Debug\EntityFramework.xml

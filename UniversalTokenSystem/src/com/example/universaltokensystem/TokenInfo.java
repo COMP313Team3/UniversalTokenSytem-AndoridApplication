@@ -1,17 +1,25 @@
 package com.example.universaltokensystem;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import javax.ws.rs.core.MultivaluedHashMap;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -26,6 +34,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.example.universaltokensystem.DepartmentInfo.RestOperations;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -44,10 +54,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class TokenInfo extends Activity {
 
@@ -107,6 +121,9 @@ public class TokenInfo extends Activity {
 		studentidtext.setText(displayCampusValues.get(3));
 		TextView departmenttext = (TextView) findViewById(R.id.TextView03);
 		departmenttext.setText(displayCampusValues.get(1));
+		
+		new getCount().execute();
+		
 		Button generateToken = (Button) findViewById(R.id.btnLogin);
 		generateToken.setOnClickListener(new OnClickListener() {
 			@Override
@@ -129,7 +146,60 @@ public class TokenInfo extends Activity {
 		departmentName.substring(0, 3);
 		return null;
 	}
+	
+	public class getCount extends AsyncTask<Void, Void, String> {
+		protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
+			InputStream in = entity.getContent();
+			StringBuffer out = new StringBuffer();
+			int n = 1;
+			while (n > 0) {
+				byte[] b = new byte[4096];
+				n = in.read(b);
+				if (n > 0)
+					out.append(new String(b, 0, n));
+			}
+			return out.toString();
+		}
 
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+
+		}
+
+		@Override
+		protected String doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpContext localContext = new BasicHttpContext();
+			String restStudentURL = "http://tokensys.azurewebsites.net//api/tokens/RetrieveTokensForStudent?studentid="+2;
+			HttpGet httpGet = new HttpGet(restStudentURL);
+			String text = null;
+			try {
+				HttpResponse response = httpClient.execute(httpGet, localContext);
+				HttpEntity entity = response.getEntity();
+				text = getASCIIContentFromEntity(entity);
+			} catch (Exception e) {
+				return e.getLocalizedMessage();
+			}
+			return text;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			TextView estimateTime = (TextView) findViewById(R.id.txtEstimateTime);
+			int num = 5;
+			int time = 0;
+			time = Integer.parseInt(result);
+			String totalTime = time*num + "Minutes";
+			estimateTime.setText(totalTime);
+		}
+	}
+	
 	public class RestPostOperations extends AsyncTask<Void, Void, String> {
 		protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
 			InputStream in = entity.getContent();
