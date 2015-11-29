@@ -51,15 +51,14 @@ namespace CCTokenSystem.Controllers
                 NewToken.closingTime = DateTime.Now;
                 NewToken.status = "InActive";
                 dbcontext.Entry(NewToken).State = EntityState.Modified;
-            }
-
-            try
-            {
-                dbcontext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                try
+                {
+                    dbcontext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                }
             }
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, NewToken);
 
@@ -68,43 +67,7 @@ namespace CCTokenSystem.Controllers
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             return response;
-            //NewToken.department = null;
-            //NewToken.student = null;
-            //var tokentoupdate = dbcontext.Tokens.Where(tok => tok.tokenid == NewToken.tokenid);
-
-            //Token token;
-
-            //if (tokentoupdate != null)
-            //{
-            //    token = (Token)tokentoupdate;
-
-            //    NewToken.closingTime = DateTime.Now;
-            //    token.status = "InActive";
-            //    token.Advisor_Id = 1;
-
-            //    dbcontext.Entry(tokentoupdate).State = EntityState.Modified;
-
-            //    try
-            //    {
-            //        dbcontext.SaveChanges();
-            //        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, token);
-            //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            //        return response;
-            //    }
-            //    catch
-            //    {
-            //        return Request.CreateErrorResponse(HttpStatusCode.NotModified, "Failed to update");
-            //    }
-
-            //}
-            //else
-            //{
-            //    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No Tokens found for the id passed");
-            //}
-
         }
-
-
 
         [HttpGet]
         public HttpResponseMessage RetrieveTokensByDept([FromUri]int dID)
@@ -118,7 +81,7 @@ namespace CCTokenSystem.Controllers
         [HttpGet]
         public HttpResponseMessage RetrieveTokensForStudent([FromUri]int studentID)
         {
-            List<Token> tokens = dbcontext.Tokens.Where(tok => tok.student_id == studentID).ToList<Token>();
+            var tokens = dbcontext.Tokens.Where(tok => tok.student_id == studentID && tok.status == "Active").Count();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, tokens);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;

@@ -1,8 +1,51 @@
 ﻿<script src="~/Scripts/Controller/TokenCtrl/TokenCtrl.js"></script>
-<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js" type="text/javascript"></script>
+<script src="~/Scripts/ui-bootstrap-tpls-0.10.js"></script>
 <div ng-controller="TokenCtrl">
     <form class="form-horizontal" name="myForm" novalidate>
+        
+        <div ng-show="log">
+            <h3>Login</h3>
+            <div class="form-group">
+                <label for="email" class="col-sm-5 control-label">Email:</label>
+                <div class="col-sm-7">
+                    <input type="email" class="form-control" name="input" ng-model="advisor.email" placeholder="Email" required>
+                    <span style="color:red" ng-show="myForm.input.$dirty && myForm.input.$invalid">
+                        <span ng-show="myForm.input.$error.required">Email is required</span>
+                        <span ng-show="myForm.input.$error.email">Invalid Email</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-5 control-label">Passowrd:</label>
+                <div class="col-sm-7">
+                    <input type="password" class="form-control" name="password" ng-model="advisor.password" placeholder="Password" required>
+                    <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                        <span ng-show="myForm.password.$error.required">Password is required</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6">
+
+                </div>
+                <div class="col-sm-6">
+                    <input type="submit" ng-click="login(advisor)" ng-disabled="myForm.input.$pristine || 
+                           myForm.input.$dirty && myForm.input.$invalid || myForm.password.$pristine || 
+                           myForm.password.$dirty && myForm.password.$invalid " 
+                           class="btn btn-success" value="Login" />
+                </div>
+            </div>
+        </div>
         <div ng-show="tokenView">
+            <div class="form-group">
+                <br/>
+                <div class="col-lg-10">
+        
+                </div>
+                <div class="col-lg-2">
+                    <input type="submit" ng-click="Signout()" class="btn btn-danger" value="Sign Out" />
+                </div>
+            </div>
             <h3>Individual Token Details</h3>
             <div class="form-group">
                 <label for="lastname" class="col-sm-5 control-label">Token ID #:</label>
@@ -37,6 +80,15 @@
             </div>
         </div>
         <div ng-show="tokenInfo">
+            <div class="form-group">
+                <br />
+                <div class="col-lg-10">
+
+                </div>
+                <div class="col-lg-2">
+                    <input type="submit" ng-click="Signout()" class="btn btn-danger" value="Sign Out" />
+                </div>
+            </div>
             <div class="col-lg-12">
                 <h3>Token Details</h3>
                 <div class="form-group">

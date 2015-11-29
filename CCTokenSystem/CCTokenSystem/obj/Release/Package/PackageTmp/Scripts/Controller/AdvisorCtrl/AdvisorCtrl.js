@@ -10,8 +10,7 @@ app.controller("AdvisorCtrl", function ($scope, $http) {
         $scope.advisor.campusid = $scope.CampusData[0].CampusId;
 
         $http.get("/api/Department?CampusId=" + $scope.CampusData[0].CampusId)
-          .success(function (response) {
-              console.log(response);
+          .success(function (response) {    
               $scope.DeptData = response;
               $scope.advisor.dept_id = response[0].dept_Id;
           });
