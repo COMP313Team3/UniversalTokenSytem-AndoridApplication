@@ -41,6 +41,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -69,6 +70,7 @@ public class TokenInfo extends Activity {
 	private ArrayList<String> DepartmentData;
 	private ArrayList<String> CampusData;
 	private String Issue;
+	String d_id = null;
 
 	public String getIssue() {
 		return Issue;
@@ -101,7 +103,7 @@ public class TokenInfo extends Activity {
 	public void setDepartmentData(ArrayList<String> departmentData) {
 		DepartmentData = departmentData;
 	}
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -122,6 +124,7 @@ public class TokenInfo extends Activity {
 		TextView departmenttext = (TextView) findViewById(R.id.TextView03);
 		departmenttext.setText(displayCampusValues.get(1));
 		
+		d_id = displayCampusValues.get(0);
 		new getCount().execute();
 		
 		Button generateToken = (Button) findViewById(R.id.btnLogin);
@@ -160,20 +163,24 @@ public class TokenInfo extends Activity {
 			}
 			return out.toString();
 		}
-
+		ProgressDialog progressDailog = new ProgressDialog(TokenInfo.this);
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-
+			progressDailog.setTitle("Please wait...");
+			progressDailog.show();
 		}
 
 		@Override
 		protected String doInBackground(Void... params) {
 			// TODO Auto-generated method stub
+			
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext localContext = new BasicHttpContext();
-			String restStudentURL = "http://tokensys.azurewebsites.net//api/tokens/RetrieveTokensForStudent?studentid="+2;
+			//String restStudentURL = "http://tokensys.azurewebsites.net/api/tokens/RetrieveTokensForStudent?studentid="+2;
+			Log.d("Department ID", d_id);
+			String restStudentURL = "http://tokensys.azurewebsites.net/api/tokens/RetrieveTokensCountByDept?dept_id="+d_id;
 			HttpGet httpGet = new HttpGet(restStudentURL);
 			String text = null;
 			try {
@@ -186,6 +193,7 @@ public class TokenInfo extends Activity {
 			return text;
 		}
 
+		@SuppressWarnings("unused")
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
@@ -194,9 +202,27 @@ public class TokenInfo extends Activity {
 			TextView estimateTime = (TextView) findViewById(R.id.txtEstimateTime);
 			int num = 5;
 			int time = 0;
+			int totalWT = 0;
+			String totalTime;
 			time = Integer.parseInt(result);
-			String totalTime = time*num + "Minutes";
-			estimateTime.setText(totalTime);
+			totalWT = time*num;
+			if (totalWT == 0)
+			{
+				totalTime = "No Waiting time";
+				estimateTime.setText(totalTime);
+				progressDailog.dismiss();
+			}
+			else if(totalWT<60){
+				totalTime = totalWT + "Minutes";	
+				estimateTime.setText(totalTime);
+				progressDailog.dismiss();
+			}
+			
+			else{
+				totalTime = "More than 01 hour";	
+				estimateTime.setText(totalTime);
+				progressDailog.dismiss();
+			}
 		}
 	}
 	
@@ -283,27 +309,6 @@ public class TokenInfo extends Activity {
 				Toast.makeText(TokenInfo.this, "Unable to create token", Toast.LENGTH_SHORT).show();
 			}
 
-		}
-
-		protected void showCustomTokenDialog() {
-
-			// TODO Auto-generated method stub
-			final Dialog dialog = new Dialog(TokenInfo.this);
-			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			dialog.setContentView(R.layout.token_gen);
-
-			Button generateToken = (Button) dialog.findViewById(R.id.btnLogin);
-			generateToken.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-
-					dialog.dismiss();
-				}
-			});
-
-			dialog.show();
 		}
 	}
 

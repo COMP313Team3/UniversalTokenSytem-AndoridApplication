@@ -93,9 +93,11 @@ public class MainActivity extends Activity {
 			HttpContext localContext = new BasicHttpContext();
 			EditText StudentID = (EditText) findViewById(R.id.txtStudentID);
 			String SId = StudentID.getText().toString().trim();
+			EditText Password = (EditText) findViewById(R.id.txtpassword);
+			String password = Password.getText().toString().trim();
 			setStudentId(SId);
 			String data = null;
-			String restStudentURL = "http://tokensys.azurewebsites.net/api/Students?StudentID=" + SId;
+			String restStudentURL = "http://tokensys.azurewebsites.net/api/Students?StudentID=" + SId+"&password="+password;
 			HttpGet httpGet = new HttpGet(restStudentURL);
 			try {
 				HttpResponse response = httpClient.execute(httpGet, localContext);
@@ -115,9 +117,12 @@ public class MainActivity extends Activity {
 				Toast.makeText(MainActivity.this, "Invalid StudentID", Toast.LENGTH_SHORT).show();
 			} else {
 				Intent intent = new Intent(MainActivity.this, CampusInfo.class);
+				//Intent intent1 = new Intent(MainActivity.this, TokenInfo.class);
 				intent.putExtra("StudentInfo", result);
 				intent.putExtra("StudentID", getStudentId());
+				//intent1.putExtra("StudentInfo", result);
 				startActivity(intent);
+				//startActivity(intent1);
 			}
 			((EditText) findViewById(R.id.txtStudentID)).setText("");
 			progressDailog.dismiss();
