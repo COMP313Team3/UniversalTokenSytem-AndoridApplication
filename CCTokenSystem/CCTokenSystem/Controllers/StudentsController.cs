@@ -20,9 +20,10 @@ namespace CCTokenSystem.Controllers
         {
             return dbcontext.Students.AsEnumerable<Student>();
         }
-        public HttpResponseMessage GetbyStudentID([FromUri]int StudentID)
+        public HttpResponseMessage GetbyStudentID([FromUri]int StudentID,string Password)
         {
-            var student = dbcontext.Students.Where(sid=>sid.StudentID==StudentID);
+            string password = "password";
+            var student = dbcontext.Students.Where(sid=>sid.StudentID == StudentID && password == Password);
             if (student == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));

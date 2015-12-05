@@ -90,7 +90,7 @@ namespace CCTokenSystem.Controllers
         [HttpGet]
         public HttpResponseMessage RetrieveTokensCountByDept([FromUri]int dept_Id)
         {
-            var tokenscount = dbcontext.Tokens.Where(tok => tok.dept_Id == dept_Id).Count();
+            var tokenscount = dbcontext.Tokens.Where(tok => tok.dept_Id == dept_Id && tok.status == "Active").Count();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, tokenscount);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;
