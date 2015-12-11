@@ -24,14 +24,19 @@ namespace CCTokenSystem.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAdvisorbyID([FromUri]int AdvisorID)
+        public HttpResponseMessage GetAdvisorbyID(int Id)
         {
-            var advisor = dbcontext.Advisors.Where(adv => adv.Advisor_Id== AdvisorID);
+            var advisor = dbcontext.Advisors.Where(adv => adv.Advisor_Id == Id).FirstOrDefault();
 
             if (advisor == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
+
+            Advisor advi = (Advisor)advisor;
+
+
+            advi.campusid = advi.Department.campus_Id;
 
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
 
@@ -40,7 +45,7 @@ namespace CCTokenSystem.Controllers
             return response;
         }
 
-       
+
         [HttpPut]
         public HttpResponseMessage UpdateAdvisor(Advisor advisor)
         {
@@ -69,34 +74,28 @@ namespace CCTokenSystem.Controllers
         [HttpPost]
         public HttpResponseMessage CreateAdvisor(Advisor advisor)
         {
-            if (advisor != null)
+            var checkEmail = dbcontext.Advisors.Where(a_name => a_name.Email == advisor.Email).Any();
+            if (!checkEmail)
             {
-                if (dbcontext.Advisors.Find(advisor.Advisor_Id) == null)
+                dbcontext.Advisors.Add(advisor);
+                try
                 {
-                    dbcontext.Advisors.Add(advisor);
+                    dbcontext.SaveChanges();
                 }
-                else
+                catch (Exception ex)
                 {
-                    HttpResponseMessage errresponse = Request.CreateResponse(HttpStatusCode.Conflict);
-                    return errresponse;
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
                 }
-            }
-            try
-            {
-                dbcontext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisor);
 
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            return response;
+                return response;
+            }
+            HttpResponseMessage res = Request.CreateResponse(HttpStatusCode.NotFound, "Not Found");
+            return res;
         }
-
         [HttpDelete]
         public HttpResponseMessage DeleteAdvisor(int AdvisorID)
         {
@@ -118,6 +117,20 @@ namespace CCTokenSystem.Controllers
             }
 
             return Request.CreateResponse(new HttpResponseMessage(HttpStatusCode.OK));
+        }
+        [HttpGet]
+        public HttpResponseMessage GetAdvisor([FromUri] string email, string password)
+        {
+            if (email == null && password==null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            List<Advisor> advisorInfo = dbcontext.Advisors.Where(a => a.Email == email && a.Password == password).ToList();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, advisorInfo);
+
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            return response;
         }
     }
 }

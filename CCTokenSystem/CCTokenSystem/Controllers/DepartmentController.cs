@@ -83,25 +83,30 @@ namespace CCTokenSystem.Controllers
         [HttpPost]
         public HttpResponseMessage CreateDepartment(Department department)
         {
-            dbcontext.Departments.Add(department);
-            try
+            var checkName = dbcontext.Departments.Where(d_name => d_name.dept_name == department.dept_name).Any();
+            if (!checkName)
             {
-                dbcontext.SaveChanges();
+                dbcontext.Departments.Add(department);
+                try
+                {
+                    dbcontext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                }
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, department);
+
+                response.StatusCode = HttpStatusCode.Created;
+
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                return response;
             }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, department);
-
-            response.StatusCode = HttpStatusCode.Created;
-
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            return response;
+            HttpResponseMessage res = Request.CreateResponse(HttpStatusCode.OK, "Not Found");
+            return res;
         }
-
         [HttpDelete]
         public HttpResponseMessage DeleteDepartment(int Id)
         {

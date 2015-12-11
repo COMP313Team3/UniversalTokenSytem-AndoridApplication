@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     android:background="@color/backgroundcolor">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/collegelogo" />
+	<View
+	    android:id="@+id/view1"
+	    android:layout_width="match_parent"
+	    android:layout_height="7dp"
+	    android:layout_alignLeft="@+id/lblDept"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignRight="@+id/imageView1"
+	    android:layout_marginBottom="49dp"
+	    android:background="#42454a" />
+
+	<TextView
+	    android:id="@+id/TextView01"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@+id/view1"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="17dp"
+	    android:text="@string/copyright"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	<ListView
+	    android:id="@+id/DepartmentList"
+	    android:layout_width="wrap_content"
+	    android:layout_height="200dp"
+	    android:layout_alignBottom="@+id/view1"
+	    android:layout_alignLeft="@+id/TextView01"
+	    android:layout_alignRight="@+id/view1" 
+	    android:layout_below="@+id/lblDept">
+	</ListView>
+
+	<TextView
+	    android:id="@+id/CampusInfo"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/imageView1"
+	    android:layout_below="@+id/imageView1"
+	    android:text="hhhhhhhhhhh"
+	    android:textAppearance="?android:attr/textAppearanceSmall"
+	    android:textStyle="bold" />
+
+	<TextView
+	    android:id="@+id/lblDept"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/CampusInfo"
+	    android:layout_below="@+id/CampusInfo"
+	    android:layout_marginTop="15dp"
+	    android:text="Select Department"
+	    android:textAppearance="?android:attr/textAppearanceSmall"
+	    android:textSize="20dp"
+	    android:textStyle="bold" />
+
+</RelativeLayout>

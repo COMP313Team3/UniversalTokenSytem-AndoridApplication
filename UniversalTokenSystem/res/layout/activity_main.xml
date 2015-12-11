@@ -36,33 +36,11 @@
         android:text="@string/copyright"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtCamName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:text="@string/submitstudentnum"
-        android:textColor="#fff"
-        android:background="#42454a" />
-
-    <TextView
-        android:id="@+id/txtCamName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/StudentID"
-        android:layout_alignStart="@+id/StudentID"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:text="@string/studentid"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <EditText
         android:id="@+id/txtStudentID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/StudentID"
         android:layout_alignTop="@+id/txtCamName"
         android:layout_toEndOf="@+id/txtCamName"
         android:layout_toRightOf="@+id/txtCamName"
@@ -71,5 +49,48 @@
 
         <requestFocus />
     </EditText>
+
+    <TextView
+        android:id="@+id/txtCamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/StudentID"
+        android:layout_alignStart="@+id/StudentID"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/studentid"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/passowrd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtCamName"
+        android:layout_centerVertical="true"
+        android:text="Passowrd:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/txtpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtStudentID"
+        android:layout_alignRight="@+id/StudentID"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtpassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:background="#42454a"
+        android:text="@string/submitstudentnum"
+        android:textColor="#fff" />
 
 </RelativeLayout>

@@ -17,44 +17,13 @@
         android:src="@drawable/collegelogo" />
 
     <TextView
-        android:id="@+id/txtIssue"
+        android:id="@+id/txtStudentId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/txtStuName"
-        android:layout_marginTop="17dp"
-        android:text="@string/issue"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/txtDepartment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtIssue"
-        android:layout_below="@+id/txtIssue"
-        android:layout_marginTop="16dp"
-        android:text="@string/department"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/txtStudentID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txtDepartment"
-        android:layout_toEndOf="@+id/txtIssue"
-        android:layout_toRightOf="@+id/txtDepartment"
-        android:ems="6"
-        android:inputType="number" />
-
-    <TextView
-        android:id="@+id/TextView01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:text="@string/copyright"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_alignBottom="@+id/txtStuName"
+        android:layout_alignRight="@+id/TextView01"
+        android:layout_toRightOf="@+id/txtStuName"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/txtStuName"
@@ -62,39 +31,99 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView1"
         android:layout_below="@+id/imageView1"
-        android:layout_marginTop="25dp"
-        android:text="@string/studentid"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginTop="19dp"
+        android:text="Student ID:     "
+        
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtIssue"
+        android:layout_alignRight="@+id/imageView1"
+        android:ems="10" />
 
     <TextView
-        android:id="@+id/txtRoom"
+        android:id="@+id/txtDepartment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtStuName"
+        android:layout_below="@+id/txtStudentId"
+        android:layout_marginTop="24dp"
+        android:text="@string/department"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/txtIssue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtDepartment"
         android:layout_below="@+id/txtDepartment"
-        android:layout_marginTop="18dp"
-        android:text="@string/room"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
+        android:layout_marginTop="31dp"
+        android:text="@string/issue"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtRoom"
+        android:layout_below="@+id/editText1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="60dp"
         android:background="#42454a"
         android:text="@string/generate"
         android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtIssue"
+        android:layout_toRightOf="@+id/txtStuName"
+        android:text="Randomtext"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="7dp"
-        android:layout_alignLeft="@+id/txtRoom"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_below="@+id/btnLogin"
-        android:layout_marginTop="16dp"
+        android:layout_alignLeft="@+id/txtIssue"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/editText1"
+        android:layout_marginBottom="49dp"
+        android:layout_marginTop="17dp"
         android:background="#42454a" />
+
+<TextView
+	    android:id="@+id/TextView01"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@+id/view1"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="17dp"
+	    android:text="@string/copyright"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+<TextView
+    android:id="@+id/textView3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/txtIssue"
+    android:layout_below="@+id/editText1"
+    android:layout_marginTop="20dp"
+    android:text="Current Waiting Time:"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/txtEstimateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignRight="@+id/txtStudentId"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="13sp" />
 
 </RelativeLayout>
