@@ -18,5 +18,7 @@
     <string name="title_activity_current_token">CurrentToken</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_token_notification">TokenNotificationActivity</string>
+    <string name="password">Password:\t</string>
+
 
 </resources>
