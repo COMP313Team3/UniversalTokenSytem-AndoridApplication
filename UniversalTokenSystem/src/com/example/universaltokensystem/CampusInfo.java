@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import android.view.ViewGroup;
 
 import javax.ws.rs.core.MultivaluedHashMap;
 
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -147,7 +149,24 @@ public class CampusInfo extends Activity {
 				}
 
 				ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(CampusInfo.this,
-						android.R.layout.simple_list_item_1, android.R.id.text1, items);
+						R.layout.mylist, R.id.Itemname, items){
+				            @Override
+				            public View getView(int position, View convertView, ViewGroup parent){
+				                // Get the current item from ListView
+				                View view = super.getView(position,convertView,parent);
+				                if(position %2 == 1)
+				                {
+				                    // Set a background color for ListView reguar row/item
+				                    view.setBackgroundColor(Color.parseColor("#b2b300"));
+				                }
+				                else
+				                {
+				                    // Set the background color for alternate row/item
+				                    view.setBackgroundColor(Color.parseColor("#808000"));
+				                }
+				                return view;
+				            }
+				        };
 				listView.setAdapter(mArrayAdapter);
 				listView.setOnItemClickListener(new OnItemClickListener() {
 
