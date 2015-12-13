@@ -40,9 +40,12 @@
 	    android:id="@+id/DepartmentList"
 	    android:layout_width="wrap_content"
 	    android:layout_height="295dp"
-	    android:layout_alignLeft="@+id/lblDept"
+	    android:layout_alignLeft="@+id/view1"
 	    android:layout_alignRight="@+id/imageView1"
-	    android:layout_below="@+id/lblDept" >
+	    android:layout_below="@+id/lblCampus"
+	    android:layout_marginTop="200dp"
+	    android:divider="#D4DF38"
+	    android:dividerHeight="6dp" >
 
     </ListView>
 
@@ -54,7 +57,9 @@
 	    android:layout_below="@+id/imageView1"
 	    android:text="hhhhhhhhhhh"
 	    android:textAppearance="?android:attr/textAppearanceSmall"
-	    android:textStyle="bold" />
+	    android:textColor="#3333cc"
+        android:textStyle="bold"
+        android:typeface="serif"/>
 
 	<TextView
 	    android:id="@+id/lblDept"
@@ -63,9 +68,11 @@
 	    android:layout_alignLeft="@+id/CampusInfo"
 	    android:layout_below="@+id/CampusInfo"
 	    android:layout_marginTop="15dp"
-	    android:text="Select Department"
+	    android:text="Select Department:"
 	    android:textAppearance="?android:attr/textAppearanceSmall"
-	    android:textSize="20dp"
-	    android:textStyle="bold" />
+	    android:textColor="#990000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:typeface="serif" />
 
 </RelativeLayout>
