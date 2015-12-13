@@ -40,18 +40,24 @@ namespace CCTokenSystem.Controllers
                 {
                     CCTokenSystemContext dbcontext = new CCTokenSystemContext();
                     HttpPostedFileBase file = Request.Files["DataFileupload"];
+                    string fileExtension = System.IO.Path.GetExtension(Request.Files["DataFileupload"].FileName);
                     Session["resourceFile"] = file;
-                    var package = new ExcelPackage(file.InputStream);
-                    lstDatasheets = new List<Datasheet>();
-                    int id = 0;
-                    foreach (ExcelWorksheet ws in package.Workbook.Worksheets)
+                    if (fileExtension == ".xls" || fileExtension == ".xlsx")
                     {
-                        Datasheet ds = new Datasheet();
-                        ds.id = ++id;
-                        ds.Name = ws.Name;
-                        lstDatasheets.Add(ds);
+                        var package = new ExcelPackage(file.InputStream);
+                        lstDatasheets = new List<Datasheet>();
+                        int id = 0;
+                        foreach (ExcelWorksheet ws in package.Workbook.Worksheets)
+                        {
+                            Datasheet ds = new Datasheet();
+                            ds.id = ++id;
+                            ds.Name = ws.Name;
+                            lstDatasheets.Add(ds);
+                        }
                     }
-
+                    else {
+                        ViewData["error"] = "Please, Uplaod Excel file only";
+                    }
                     return View("Index", lstDatasheets);
                 }
                 if (Request.Form["LoadData"] != null)
@@ -84,7 +90,7 @@ namespace CCTokenSystem.Controllers
                     }
                 }
             }
-
+            ViewData["message"] = "Data successfully uploaded";
             return View("Index");
         }
      

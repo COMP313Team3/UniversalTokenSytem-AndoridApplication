@@ -20,6 +20,7 @@ namespace CCTokenSystem.Controllers
         {
             return dbcontext.Students.AsEnumerable<Student>();
         }
+        [HttpGet]
         public HttpResponseMessage GetbyStudentID([FromUri]int StudentID,string Password)
         {
             string password = "password";
