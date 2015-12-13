@@ -5,6 +5,19 @@
     android:background="@color/backgroundcolor"
     android:orientation="vertical" >
 
+    <TextView
+          android:id="@+id/textView2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/imageView1"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="15dp"
+          android:text="Token Generation"
+          android:textAppearance="?android:attr/textAppearanceLarge"
+          android:textColor="#990000"
+          android:typeface="serif"
+          android:textStyle="bold" />
+    
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
@@ -25,22 +38,12 @@
         android:layout_toRightOf="@+id/txtStuName"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/txtStuName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="19dp"
-        android:text="Student ID:     "
-        
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txtIssue"
+        android:layout_alignLeft="@+id/TextView03"
         android:layout_alignRight="@+id/imageView1"
         android:ems="10" />
 
@@ -51,17 +54,9 @@
         android:layout_alignLeft="@+id/txtStuName"
         android:layout_below="@+id/txtStudentId"
         android:layout_marginTop="24dp"
+        android:textColor="#3333cc"
+        android:typeface="serif"
         android:text="@string/department"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/txtIssue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtDepartment"
-        android:layout_below="@+id/txtDepartment"
-        android:layout_marginTop="31dp"
-        android:text="@string/issue"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <Button
         android:id="@+id/btnLogin"
@@ -112,8 +107,10 @@
     android:layout_below="@+id/editText1"
     android:layout_marginTop="20dp"
     android:text="Current Waiting Time:"
+    android:textColor="#3333cc"
+    android:typeface="serif"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:textSize="13sp" />
+    android:textSize="15sp" />
 
     <TextView
         android:id="@+id/txtEstimateTime"
@@ -124,6 +121,30 @@
         android:layout_alignTop="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="13sp" />
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txtStuName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20dp"
+        android:text="Student ID:     "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#3333cc"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/txtIssue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtDepartment"
+        android:layout_below="@+id/txtDepartment"
+        android:layout_marginTop="16dp"
+        android:text="@string/issue"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#3333cc"
+        android:typeface="serif" />
 
 </RelativeLayout>

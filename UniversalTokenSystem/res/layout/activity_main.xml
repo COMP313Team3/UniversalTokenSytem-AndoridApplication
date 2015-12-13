@@ -48,7 +48,7 @@
         android:layout_marginTop="54dp"
         android:text="@string/studentid"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#222222"
+        android:textColor="#3333cc"
         android:textStyle="bold"
         android:typeface="serif" />
 
@@ -82,7 +82,7 @@
         android:layout_centerVertical="true"
         android:text="@string/password"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#222222"
+        android:textColor="#3333cc"
         android:textStyle="bold"
         android:typeface="serif" />
 
