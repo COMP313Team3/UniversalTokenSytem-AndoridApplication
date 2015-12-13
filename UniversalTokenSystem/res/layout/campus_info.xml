@@ -48,9 +48,9 @@
         android:layout_below="@+id/imageView1"
         android:text="Welcome to CCToken System: "
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#3333cc"
-        android:typeface="serif"
-        android:textStyle="bold" />
+        android:textColor="#222222"
+        android:textStyle="bold"
+        android:typeface="serif" />
 
     <TextView
         android:id="@+id/lblCampus"
@@ -61,10 +61,10 @@
         android:layout_marginTop="14dp"
         android:text="Select a Campus:"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#007acc"
         android:textSize="20dp"
-        android:textColor="#990000"
-        android:typeface="serif"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:typeface="serif" />
 
  <TextView
 	    android:id="@+id/TextView01"

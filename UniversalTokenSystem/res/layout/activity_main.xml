@@ -43,14 +43,14 @@
         android:layout_alignLeft="@+id/StudentID"
         android:layout_alignStart="@+id/StudentID"
         android:layout_below="@+id/imageView1"
-        android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="54dp"
         android:text="@string/studentid"
-        android:textColor="#990000"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#222222"
         android:textStyle="bold"
-        android:typeface="serif"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:typeface="serif" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -81,10 +81,10 @@
         android:layout_alignLeft="@+id/txtCamName"
         android:layout_centerVertical="true"
         android:text="@string/password"
-        android:textColor="#990000"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#222222"
         android:textStyle="bold"
-        android:typeface="serif"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:typeface="serif" />
 
     <EditText
         android:id="@+id/txtpassword"

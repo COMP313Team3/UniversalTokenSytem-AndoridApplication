@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
 			String password = Password.getText().toString().trim();
 			setStudentId(SId);
 			String data = null;
-			String restStudentURL = "http://tokensys.azurewebsites.net/api/Students?StudentID=" + SId+"&password="+password;
+			String restStudentURL = "http://tokensys.azurewebsites.net/api/Students?StudentID="+SId+"&password="+password;
 			HttpGet httpGet = new HttpGet(restStudentURL);
 			try {
 				HttpResponse response = httpClient.execute(httpGet, localContext);
