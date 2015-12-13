@@ -35,16 +35,16 @@
             android:name=".CurrentToken"
             android:label="@string/title_activity_current_token" >
         </activity>
-
-        <service
-            android:name=".TokenNotificationService"
-            android:exported="false" >
-        </service>
-
         <activity
             android:name=".TokenNotificationActivity"
             android:label="@string/title_activity_token_notification" >
         </activity>
+         <service android:name=".TokenNotificationService" android:enabled="true" >
+           <intent-filter>
+               <action android:name=".TokenNotificationService" />
+           </intent-filter>
+         </service>
+        
     </application>
 
 </manifest>
