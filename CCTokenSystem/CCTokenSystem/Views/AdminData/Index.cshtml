@@ -1,0 +1,34 @@
+﻿@using CCTokenSystem.Controllers
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Datasheet>
+
+<h2>Load Data</h2>
+
+
+@using (Html.BeginForm("Upload", "AdminData", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>
+        Excel File: <input type="file" name="DataFileupload" />
+    </p>
+
+    <input type="submit" name="LoadDatasheets" value="Load Sheets" />
+
+    <br />
+    <br />    <br />
+    if (Model != null && Model.Count > 0)
+    {
+        <p>Please select the Excel sheets : </p>
+        <hr />
+     
+                    @Html.EditorForModel()
+            
+        <input type="submit" name="LoadData" value="UPLOAD" />
+    }
+}
+
+
+
