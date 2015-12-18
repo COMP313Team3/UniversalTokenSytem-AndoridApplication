@@ -81,7 +81,10 @@ namespace CCTokenSystem.Controllers
         [HttpGet]
         public HttpResponseMessage RetrieveTokensForStudent([FromUri]int studentID)
         {
-            var tokens = dbcontext.Tokens.Where(tok => tok.student_id == studentID && tok.status == "Active").Count();
+            List<Token> tokens = dbcontext.Tokens.Where(tok => tok.student_id == studentID && tok.status == "Active").ToList<Token>();
+            foreach (Token tok in tokens) {
+                tok.approximateWaitTimeinMins = getTokenWaitTime(tok.tokenid);
+            }
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, tokens);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return response;

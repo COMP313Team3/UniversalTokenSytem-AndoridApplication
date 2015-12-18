@@ -200,7 +200,7 @@ public class TokenInfo extends Activity {
 			super.onPostExecute(result);
 			
 			TextView estimateTime = (TextView) findViewById(R.id.txtEstimateTime);
-			int num = 5;
+			int num = 10;
 			int time = 0;
 			int totalWT = 0;
 			String totalTime;
@@ -208,18 +208,18 @@ public class TokenInfo extends Activity {
 			totalWT = time*num;
 			if (totalWT == 0)
 			{
-				totalTime = "No Waiting time";
+				totalTime = " No Waiting time ";
 				estimateTime.setText(totalTime);
 				progressDailog.dismiss();
 			}
 			else if(totalWT<60){
-				totalTime = totalWT + "Minutes";	
+				totalTime = totalWT + " Minutes ";	
 				estimateTime.setText(totalTime);
 				progressDailog.dismiss();
 			}
 			
 			else{
-				totalTime = "More than 01 hour";	
+				totalTime = " More than 01 hour ";	
 				estimateTime.setText(totalTime);
 				progressDailog.dismiss();
 			}
@@ -290,11 +290,7 @@ public class TokenInfo extends Activity {
 					st_id = jObject.getString("student_id");
 					
 					
-					Intent TokenNotificationintent = new Intent(TokenInfo.this, TokenNotificationService.class);
-					TokenNotificationintent.putExtra("tokenId", token_Id);
-					TokenNotificationintent.putExtra("studentId", st_id);
-					startService(TokenNotificationintent);
-						
+					
 					Intent intent = new Intent(TokenInfo.this, CurrentToken.class);
 					intent.putStringArrayListExtra("DepartmentData",
 							new ArrayList<String>(getDepartmentData()));

@@ -55,7 +55,8 @@ namespace CCTokenSystem.Controllers
                             lstDatasheets.Add(ds);
                         }
                     }
-                    else {
+                    else
+                    {
                         ViewData["error"] = "Please, Uplaod Excel file only";
                     }
                     return View("Index", lstDatasheets);
@@ -73,13 +74,13 @@ namespace CCTokenSystem.Controllers
                             {
                                 LoadStudent(file);
                             }
-                            if (ds.Name.Equals("Depts") && ds.TobeUploaded)
-                            {
-                                LoadDept(file);
-                            }
                             if (ds.Name.Equals("campus") && ds.TobeUploaded)
                             {
                                 LoadCampus(file);
+                            }
+                            if (ds.Name.Equals("Depts") && ds.TobeUploaded)
+                            {
+                                LoadDept(file);
                             }
                             if (ds.Name.Equals("Advisors") && ds.TobeUploaded)
                             {
@@ -93,7 +94,7 @@ namespace CCTokenSystem.Controllers
             ViewData["message"] = "Data successfully uploaded";
             return View("Index");
         }
-     
+
         private void LoadStudent(HttpPostedFileBase file)
         {
             using (var package = new ExcelPackage(file.InputStream))
@@ -125,12 +126,15 @@ namespace CCTokenSystem.Controllers
                 for (int rowIterator = 2; rowIterator <= deptnoOfRow; rowIterator++)
                 {
                     Department dept = new Department();
-                    dept.dept_Id = int.Parse(deptworkSheet.Cells[rowIterator, 1].Value.ToString());
-                    dept.dept_name = deptworkSheet.Cells[rowIterator, 2].Value.ToString();
-                    dept.room_no = deptworkSheet.Cells[rowIterator, 3].Value.ToString();
-                    dept.campus_Id = int.Parse(deptworkSheet.Cells[rowIterator, 4].Value.ToString());
-                    dbcontext.Departments.Add(dept);
-                    dbcontext.SaveChanges();
+                    if (deptworkSheet.Cells[rowIterator, 1].Value != null)
+                    {
+                        //dept.dept_Id = int.Parse(deptworkSheet.Cells[rowIterator, 1].Value.ToString());
+                        dept.dept_name = deptworkSheet.Cells[rowIterator, 1].Value.ToString();
+                        dept.room_no = deptworkSheet.Cells[rowIterator, 2].Value.ToString();
+                        dept.campus_Id = int.Parse(deptworkSheet.Cells[rowIterator, 3].Value.ToString());
+                        dbcontext.Departments.Add(dept);
+                        dbcontext.SaveChanges();
+                    }
                 }
             }
         }
@@ -166,13 +170,16 @@ namespace CCTokenSystem.Controllers
                 for (int rowIterator = 2; rowIterator <= advisornoOfRow; rowIterator++)
                 {
                     Advisor advisor = new Advisor();
-                    advisor.Firstname = advisorworkSheet.Cells[rowIterator, 1].Value.ToString();
-                    advisor.Lastname = advisorworkSheet.Cells[rowIterator, 2].Value.ToString();
-                    advisor.Email = advisorworkSheet.Cells[rowIterator, 3].Value.ToString();
-                    advisor.Phoneno = advisorworkSheet.Cells[rowIterator, 4].Value.ToString();
-                    advisor.dept_Id = int.Parse(advisorworkSheet.Cells[rowIterator, 5].Value.ToString());
-                    dbcontext.Advisors.Add(advisor);
-                    dbcontext.SaveChanges();
+                    if (advisorworkSheet.Cells[rowIterator, 1].Value != null)
+                    {
+                        advisor.Firstname = advisorworkSheet.Cells[rowIterator, 1].Value.ToString();
+                        advisor.Lastname = advisorworkSheet.Cells[rowIterator, 2].Value.ToString();
+                        advisor.Email = advisorworkSheet.Cells[rowIterator, 3].Value.ToString();
+                        advisor.Phoneno = advisorworkSheet.Cells[rowIterator, 4].Value.ToString();
+                        advisor.dept_Id = int.Parse(advisorworkSheet.Cells[rowIterator, 5].Value.ToString());
+                        dbcontext.Advisors.Add(advisor);
+                        dbcontext.SaveChanges();
+                    }
                 }
 
             }
@@ -181,5 +188,5 @@ namespace CCTokenSystem.Controllers
     }
 
 
-     
+
 }
