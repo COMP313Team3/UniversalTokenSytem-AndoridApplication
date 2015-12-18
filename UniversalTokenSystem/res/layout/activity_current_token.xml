@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="7dp"
         android:layout_above="@+id/TextView01"
-        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignLeft="@+id/lblDeptName"
         android:layout_alignRight="@+id/imageView1"
         android:layout_marginBottom="14dp"
         android:background="#42454a" />
@@ -56,105 +56,92 @@
         android:layout_toRightOf="@+id/lblDeptName"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-      <TextView
-          android:id="@+id/txtroomno"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignBottom="@+id/textView1"
-          android:layout_alignLeft="@+id/txtDeptName"
-          android:layout_alignRight="@+id/txtTokenId"
-          android:layout_alignTop="@+id/textView1"
-          android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/txtroomno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/txtDeptName"
+        android:layout_alignRight="@+id/txtTokenId"
+        android:layout_alignTop="@+id/textView1"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-      <TextView
-          android:id="@+id/textView1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignRight="@+id/lblDeptName"
-          android:layout_below="@+id/lblDeptName"
-          android:layout_marginTop="16dp"
-          android:text="Room No #:"
-          android:textColor="#3333cc"
-          android:typeface="serif"
-          android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/lblDeptName"
+        android:layout_below="@+id/lblDeptName"
+        android:layout_marginTop="16dp"
+        android:text="Room No #:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#3333cc"
+        android:typeface="serif" />
 
-      <TextView
-          android:id="@+id/lblDeptName"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/txtIssue"
-          android:layout_below="@+id/txtIssue"
-          android:layout_marginTop="18dp"
-          android:text="Dept Name:"
-          android:textColor="#3333cc"
-          android:typeface="serif"
-          android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/lblDeptName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtIssue"
+        android:layout_below="@+id/txtIssue"
+        android:layout_marginTop="18dp"
+        android:text="Dept Name:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#3333cc"
+        android:typeface="serif" />
 
-      <TextView
-          android:id="@+id/textView3"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/lblDeptName"
-          android:layout_below="@+id/textView1"
-          android:layout_marginTop="18dp"
-          android:text="Estimate Waiting Time:"
-          android:textColor="#3333cc"
-          android:typeface="serif"
-          android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/txtEstimateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/txtroomno"
+        android:layout_toRightOf="@+id/textView2"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-      <TextView
-          android:id="@+id/txtEstimateTime"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignBottom="@+id/textView3"
-          android:layout_alignRight="@+id/txtroomno"
-          android:layout_toRightOf="@+id/textView2"
-          android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="23dp"
+        android:text="@string/copyright"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-      <TextView
-          android:id="@+id/TextView01"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:layout_centerHorizontal="true"
-          android:layout_marginBottom="23dp"
-          android:text="@string/copyright"
-          android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/txtIssue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtStuName"
+        android:layout_centerVertical="true"
+        android:text="@string/tokenid"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#3333cc"
+        android:typeface="serif" />
 
-      <TextView
-          android:id="@+id/txtIssue"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/txtStuName"
-          android:layout_centerVertical="true"
-          android:text="@string/tokenid"
-          android:textColor="#3333cc"
-          android:typeface="serif"
-          android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/txtStuName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtIssue"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_marginBottom="14dp"
+        android:text="Student ID:      "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#3333cc"
+        android:typeface="serif" />
 
-      <TextView
-          android:id="@+id/txtStuName"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_above="@+id/txtIssue"
-          android:layout_alignLeft="@+id/imageView1"
-          android:layout_marginBottom="14dp"
-          android:text="Student ID:      "
-          android:textColor="#3333cc"
-          android:typeface="serif"
-          android:textAppearance="?android:attr/textAppearanceMedium" />
-
-      <TextView
-          android:id="@+id/textView2"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/imageView1"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="15dp"
-          android:text="Token Details"
-          android:textAppearance="?android:attr/textAppearanceLarge"
-          android:textColor="#990000"
-          android:typeface="serif"
-          android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Token Details"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#990000"
+        android:textStyle="bold"
+        android:typeface="serif" />
 
 </RelativeLayout>

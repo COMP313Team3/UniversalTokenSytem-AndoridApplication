@@ -107,10 +107,10 @@
     android:layout_below="@+id/editText1"
     android:layout_marginTop="20dp"
     android:text="Current Waiting Time:"
-    android:textColor="#3333cc"
-    android:typeface="serif"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:textSize="15sp" />
+    android:textColor="#3333cc"
+    android:textSize="12sp"
+    android:typeface="serif" />
 
     <TextView
         android:id="@+id/txtEstimateTime"
@@ -121,7 +121,7 @@
         android:layout_alignTop="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="15sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/txtStuName"

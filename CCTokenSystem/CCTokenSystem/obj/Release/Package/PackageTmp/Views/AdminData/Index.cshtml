@@ -1,0 +1,43 @@
+﻿@using CCTokenSystem.Controllers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Datasheet>
+<h2>Load Data from External Files:</h2>
+
+@using (Html.BeginForm("Upload", "AdminData", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div style="color:red;font-size:x-large">
+        @ViewData["error"]
+    </div>
+    <div style="color:green;font-size:x-large">
+        @ViewData["message"]
+    </div>
+    <p class="label-warning">
+       
+    </p>
+    <div class="form-group">
+        <label for="studentid" class="col-sm-2 control-label"> Excel File:</label>
+        <div class="col-sm-4">
+            <input type="file" class="form-control" name="DataFileupload" />
+        </div>
+        <div class="col-sm-6">
+            <input type="submit" class="btn btn-success" name="LoadDatasheets" value="Load Sheets" />
+        </div>
+    </div>
+        <br />
+        <br />    
+    if (Model != null && Model.Count > 0)
+    {
+        <p>Please select the Excel sheets : </p>
+        <hr />
+
+        @Html.EditorForModel()
+
+        <input type="submit" name="LoadData" class="btn btn-success" value="UPLOAD" />
+    }
+}
+
+
+

@@ -57,9 +57,6 @@ public class CurrentToken extends Activity {
 		try {
 			HttpResponse response = httpClient.execute(httpGet);				
 			result = EntityUtils.toString(response.getEntity());
-			String data = "Srinivas";
-			Log.d("Result", data);
-			Log.d("Result", result);
 			txt_estimatetime.setText(result);
 		} catch (Exception e) {
 			return;

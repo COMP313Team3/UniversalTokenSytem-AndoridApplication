@@ -37,6 +37,7 @@ public class CampusInfo extends Activity {
 
 	private String studentId;
 	private String studentTableId;
+	private String Stu_Id;
 
 	public String getStudentTableId() {
 		return studentTableId;
@@ -61,6 +62,7 @@ public class CampusInfo extends Activity {
 		TextView sID = (TextView) findViewById(R.id.StudentID);
 		String studentList = getIntent().getExtras().getString("StudentInfo").toString();
 		
+		
 		// The actual student id : 300777789 
 		setStudentId(getIntent().getExtras().getString("StudentID").toString());
 		try {
@@ -71,6 +73,7 @@ public class CampusInfo extends Activity {
 				String st_LName = stObj.getString("Lastname");
 				String st_FullName = "Welcome to CCToken System: " + st_FName + " " + st_LName;
 				String st_ID = stObj.getString("Id");
+				Stu_Id = stObj.getString("Id");
 				sID.setText(st_FullName);
 				
 				//The table student Id column value
@@ -80,6 +83,10 @@ public class CampusInfo extends Activity {
 			
 			e.printStackTrace();
 		}
+
+		Intent TokenNotificationintent = new Intent(CampusInfo.this, TokenNotificationService.class);
+		TokenNotificationintent.putExtra("studentId", Stu_Id);
+		startService(TokenNotificationintent);
 		new RestOperations().execute();
 	}
 

@@ -3,6 +3,10 @@ package com.example.universaltokensystem;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.TreeMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,7 +18,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
-
+import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -44,63 +48,46 @@ public class TokenNotificationService extends IntentService{
 	  Integer tokenWaitTime;
 	  boolean FirstNotification;
 	  boolean FinalNotification;
-	  
+	  public TreeMap<String, Integer> tokens= new TreeMap<String, Integer>();
 	  @Override
 	  protected void onHandleIntent(Intent intent) {
 	  
-		  tokenId = intent.getExtras().getString("tokenId").toString();
+		//  tokenId = intent.getExtras().getString("tokenId").toString();
 		   studentId = Integer.parseInt(intent.getExtras().getString("studentId").toString());
 		  
 		  try{
 			  GetTokenInfo();
-			   while(tokenStatus.equals("Active"))
+			   while(true)
 			   {
-				   if(tokenWaitTime >10  && !FirstNotification)
+				   for( String tokenid : tokens.keySet())
 				   {
-					   NotificationManager nm= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-					   PendingIntent p=PendingIntent.getActivity(this, 0,new Intent(this,TokenNotificationActivity.class), 0);
-					   NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
-					   builder.setContentTitle("Centennial Token Application");
-					   builder.setContentText("Your token wait time " + ((tokenWaitTime > 60) ?  (tokenWaitTime/ 60) + " Hrs " + (tokenWaitTime % 60) + " Mins" : String.valueOf(tokenWaitTime)));
-					   builder.setSmallIcon(R.drawable.ic_launcher);
-					   
-					   Notification n= builder.build();
-					   //n.vibrate=new long[]{150,300,150,600};
-					   n.flags=Notification.FLAG_AUTO_CANCEL;
-					   
-					   try
+					   if(tokens.get(tokenid)< 10)
 					   {
-					     nm.notify(R.drawable.ic_launcher,n);
+						   NotificationManager nm= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+						   PendingIntent p=PendingIntent.getActivity(this, 0,new Intent(this,TokenNotificationActivity.class), 0);
+						   NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
+						   builder.setContentTitle("Centennial Token Application");
+						   //builder.setContentText("Your token wait time " + ((tokenWaitTime > 60) ?  (tokenWaitTime/ 60) + " Hrs " + (tokenWaitTime % 60) + " Mins" : String.valueOf(tokenWaitTime)+ " Mins "));
+						   builder.setContentText("Your Token " + tokenid + "is due");
+						   builder.setSmallIcon(R.drawable.ic_launcher);
+						   
+						   Notification n= builder.build();
+						   //n.vibrate=new long[]{150,300,150,600};
+						   n.flags=Notification.FLAG_AUTO_CANCEL;
+						   
+						   try
+						   {
+						     nm.notify(R.drawable.ic_launcher,n);
+						   }
+						   catch(Exception ex)
+						   {
+							   System.out.print(ex.toString());
+						   }				   
 					   }
-					   catch(Exception ex)
-					   {
-						   System.out.print(ex.toString());
-					   }
-					   
-					   FirstNotification= true; 
 				   }
-				   if(tokenWaitTime <=10 && !FinalNotification)
-				   {
-					   NotificationManager nm= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-					   PendingIntent p=PendingIntent.getActivity(this, 0,new Intent(this,TokenNotificationActivity.class), 0);
-					   NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
-					   builder.setContentTitle("Universal Token System");
-					   builder.setContentText("Your token wait time approx " + tokenWaitTime + " mins");
-					   
-					   Notification n= builder.build();
-					   n.vibrate=new long[]{150,300,150,600};
-					   n.flags=Notification.FLAG_AUTO_CANCEL;
-					   nm.notify(R.drawable.collegelogo,n);
-					   
-					   FinalNotification= true; 
-				   }
-				   Thread.sleep(60000); //5 mins
-				   GetTokenInfo();
+				   Thread.sleep(60000); //1 mins
+				   GetTokenInfo();				   
 			   }				   
-			   if(tokenStatus.equals("InActive"))
-			   {
-				   stopSelf();
-			   }
 		   }
 		   catch(Exception Ex)
 		   {
@@ -111,13 +98,20 @@ public class TokenNotificationService extends IntentService{
 	  
 	
 
+	@SuppressLint("NewApi")
 	private void GetTokenInfo() {
 		
 		try {
-			String TokenInfo = new TokenInfoService().execute(tokenId).get();
-			JSONObject object = new JSONObject(TokenInfo);
-			tokenStatus = object.getString("status");
-			tokenWaitTime = object.getInt("approximateWaitTimeinMins");
+			String TokenInfo = new TokenInfoService().execute(String.valueOf(studentId)).get();
+			//JSONObject object = new JSONObject(TokenInfo);
+			JSONArray tokenArray = new JSONArray(TokenInfo);
+			for(int i= 0; i<tokenArray.length(); i++){
+				tokens.clear();
+				JSONObject stObj = tokenArray.getJSONObject(i);
+				tokenWaitTime = stObj.getInt("approximateWaitTimeinMins");
+				tokenId = stObj.getString("tokenid");
+				tokens.put(tokenId, tokenWaitTime);
+			}		
 		} 
 	    catch (Exception e) {
 			e.printStackTrace();
@@ -126,6 +120,13 @@ public class TokenNotificationService extends IntentService{
 
 	
 	
+private void foreach() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 public class TokenInfoService extends AsyncTask<String, Void, String> {
 	protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
 		InputStream in = entity.getContent();
@@ -150,7 +151,7 @@ public class TokenInfoService extends AsyncTask<String, Void, String> {
 		String tokenID = params[0];
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
-		String restTokenURL = "http://tokensys.azurewebsites.net/api/Tokens/RetrieveTokenById?token_Id=" + tokenID;
+		String restTokenURL = "http://tokensys.azurewebsites.net/api/Tokens/RetrieveTokensForStudent?studentid=" + tokenID;
 		HttpGet httpGet = new HttpGet(restTokenURL);
 		String text = null;
 		try {
